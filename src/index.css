@@ -1,0 +1,288 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+@theme {
+  --font-sans: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Poppins", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --color-primary: #14B8A6;
+  --color-primary-dark: #0F9F8F;
+  --color-primary-light: #2DD4BF;
+  --color-navy: #1A1A2E;
+  --color-navy-light: #252542;
+  --color-navy-dark: #0F0F1C;
+  --color-coral: #FF8E72;
+  --color-coral-dark: #E07B62;
+  --color-neutral-gray: #F8F9FA;
+}
+
+/* Custom CSS variables for High Density Theme */
+:root {
+  --teal: #14B8A6;
+  --navy: #1A1A2E;
+  --coral: #FF8E72;
+  --bg-light: #F8F9FA;
+  --white: #FFFFFF;
+  --text-main: #1A1A2E;
+  --text-muted: #6B7280;
+}
+
+/* Fallback/Global Layout Rules */
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* =======================================================
+   HIGH DENSITY SPECIFIC STYLING OVERRIDES (COMPACT SCALE)
+   ======================================================= */
+
+/* 1. Global Page Transitions & Containers */
+.view {
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}
+.view-hidden {
+  display: none !important;
+}
+
+/* 2. Compact Grid & Flex Spacing Adjustments */
+#app-view {
+  background-color: var(--bg-light) !important;
+  font-family: var(--font-sans) !important;
+}
+
+#app-view .grid {
+  gap: 1rem !important; /* High density grids use tighter gaps */
+}
+
+/* 3. Card Styling (12px border radius, subtle shadows, crisp borders) */
+#app-view .rounded-3xl,
+#app-view .rounded-2xl,
+#app-view .rounded-xl,
+#app-view .card {
+  border-radius: 12px !important;
+}
+
+#app-view .bg-white,
+#app-view .card {
+  background-color: var(--white) !important;
+  border: 1px solid #F1F5F9 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* High density tight padding for application cards */
+#app-view .p-8 {
+  padding: 1.25rem !important;
+}
+#app-view .p-6 {
+  padding: 1rem !important;
+}
+#app-view .p-4 {
+  padding: 0.75rem !important;
+}
+#app-view .p-5 {
+  padding: 1rem !important;
+}
+
+/* Margins adjustments for compact look */
+#app-view .mb-6 {
+  margin-bottom: 1rem !important;
+}
+#app-view .mb-4 {
+  margin-bottom: 0.75rem !important;
+}
+#app-view .mb-8 {
+  margin-bottom: 1.25rem !important;
+}
+#app-view .mt-8 {
+  margin-top: 1.25rem !important;
+}
+#app-view .mt-6 {
+  margin-top: 0.85rem !important;
+}
+#app-view .py-6 {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+#app-view .py-4 {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+}
+#app-view .px-6 {
+  padding-left: 1.25rem !important;
+  padding-right: 1.25rem !important;
+}
+
+/* 4. Dashed Placeholder Box Overrides */
+#app-view .border-dashed {
+  border: 2px dashed #E2E8F0 !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #94A3B8 !important;
+  font-size: 0.8rem !important;
+  text-align: center !important;
+  padding: 1rem !important;
+  background-color: #F8F9FA !important;
+}
+
+/* 5. Compact Form Elements */
+#app-view input,
+#app-view select,
+#app-view textarea {
+  border-radius: 8px !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.85rem !important;
+  border-color: #E2E8F0 !important;
+}
+
+#app-view button {
+  border-radius: 8px !important;
+}
+
+/* Compact badges style */
+#app-view .badge {
+  background-color: var(--teal) !important;
+  color: white !important;
+  font-size: 0.7rem !important;
+  padding: 0.2rem 0.5rem !important;
+  border-radius: 4px !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+}
+
+/* 6. High Density Sidebar & Navigation Tab Styling */
+#app-view aside {
+  width: 240px !important;
+  background-color: var(--navy) !important;
+  padding: 1.5rem 0.75rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#app-view aside .tab-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: 10px !important;
+  margin-bottom: 0.5rem !important;
+  cursor: pointer !important;
+  color: #94A3B8 !important;
+  font-size: 0.95rem !important;
+  background: transparent !important;
+  border: none !important;
+  font-weight: 500 !important;
+  border-left: 4px solid transparent !important;
+  transition: all 0.15s ease !important;
+}
+
+#app-view aside .tab-btn:hover {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Exact Sidebar Active Tab style match */
+#app-view aside .tab-btn.text-teal-400,
+#app-view aside .tab-btn[class*="text-teal-400"] {
+  background: rgba(20, 184, 166, 0.15) !important;
+  color: var(--teal) !important;
+  font-weight: 600 !important;
+  border-left: 4px solid var(--teal) !important;
+}
+
+/* 7. Landing Page High Density Styling */
+#landing-view {
+  background: linear-gradient(135deg, var(--navy) 0%, #0F172A 100%) !important;
+  color: var(--white) !important;
+  font-family: var(--font-sans) !important;
+}
+
+#landing-header,
+#landing-view nav {
+  background: rgba(26, 26, 46, 0.8) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+#landing-view .logo {
+  color: var(--teal) !important;
+  font-weight: 700 !important;
+}
+
+#landing-view button {
+  border-radius: 8px !important;
+}
+
+#landing-view .btn-teal {
+  background-color: var(--teal) !important;
+  color: white !important;
+  padding: 0.6rem 1.25rem !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: transform 0.1s !important;
+}
+
+#landing-view .btn-teal:hover {
+  transform: scale(1.02) !important;
+}
+
+/* Feature cards & stats boxes on landing view */
+#landing-view div[class*="bg-navy-light"],
+#landing-view div[class*="bg-white/5"],
+#landing-view div[class*="bg-white/10"],
+#landing-view section[class*="bg-navy-light"] {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 1.25rem !important;
+  border-radius: 16px !important;
+  backdrop-filter: blur(5px) !important;
+}
+
+#landing-view .feature-card-sm {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 1.25rem !important;
+  border-radius: 16px !important;
+  backdrop-filter: blur(5px) !important;
+}
+
+#landing-view .feature-card-sm h3 {
+  font-size: 1rem !important;
+  color: var(--teal) !important;
+  margin-bottom: 0.5rem !important;
+  font-weight: 600 !important;
+}
+
+#landing-view .hero-illustration {
+  background: radial-gradient(circle at 70% 30%, var(--teal) 0%, transparent 70%), radial-gradient(circle at 30% 70%, var(--coral) 0%, transparent 70%) !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+

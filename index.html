@@ -1,0 +1,2959 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WanderWise — Your AI-Powered Travel Companion</title>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body class="font-sans antialiased bg-navy text-slate-100 overflow-x-hidden">
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- VIEW 1: LANDING PAGE -->
+    <div id="landing-view" class="view min-h-screen flex flex-col">
+      <!-- Sticky Header -->
+      <header id="landing-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-navy/80 backdrop-blur-md border-b border-white/10 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          <!-- Logo -->
+          <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <div class="p-2 bg-teal-500 rounded-lg text-navy shadow-lg shadow-teal-500/20">
+              <i data-lucide="compass" class="w-6 h-6 animate-spin-slow"></i>
+            </div>
+            <span class="font-display text-2xl font-bold tracking-tight text-white">Wander<span class="text-teal-400">Wise</span></span>
+          </div>
+
+          <!-- Nav Links (Desktop) -->
+          <nav class="hidden md:flex items-center gap-8">
+            <a href="#features" class="text-slate-300 hover:text-white transition-colors duration-200 text-sm font-medium">Features</a>
+            <a href="#how-it-works" class="text-slate-300 hover:text-white transition-colors duration-200 text-sm font-medium">How It Works</a>
+            <a href="#pricing" class="text-slate-300 hover:text-white transition-colors duration-200 text-sm font-medium">Pricing</a>
+            <a href="#testimonials" class="text-slate-300 hover:text-white transition-colors duration-200 text-sm font-medium">Testimonials</a>
+          </nav>
+
+          <!-- CTA Buttons -->
+          <div class="hidden md:flex items-center gap-4">
+            <button id="navbar-signin-btn" class="text-slate-300 hover:text-white transition-colors duration-200 text-sm font-medium cursor-pointer" onclick="enterApp()">Sign In</button>
+            <button id="navbar-getstarted-btn" onclick="enterApp()" class="px-5 py-2.5 bg-teal-500 hover:bg-teal-400 text-navy font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-teal-500/20 cursor-pointer text-sm">
+              Get Started Free
+            </button>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle menu">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-navy/95 border-b border-white/10 px-4 py-6 flex flex-col gap-4 animate-fade-in">
+          <a href="#features" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white transition-colors py-2 text-lg font-medium border-b border-white/5">Features</a>
+          <a href="#how-it-works" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white transition-colors py-2 text-lg font-medium border-b border-white/5">How It Works</a>
+          <a href="#pricing" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white transition-colors py-2 text-lg font-medium border-b border-white/5">Pricing</a>
+          <a href="#testimonials" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white transition-colors py-2 text-lg font-medium border-b border-white/5">Testimonials</a>
+          <div class="flex flex-col gap-3 mt-4">
+            <button onclick="enterApp()" class="w-full py-3 bg-white/5 border border-white/10 hover:bg-white/10 text-white font-semibold rounded-xl transition-all">Sign In</button>
+            <button onclick="enterApp()" class="w-full py-3 bg-teal-500 hover:bg-teal-400 text-navy font-semibold rounded-xl shadow-lg shadow-teal-500/20 transition-all">Get Started Free</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-gradient-to-b from-navy-dark via-navy to-navy-light">
+        <!-- CSS-based Travel-Themed Illustration Background -->
+        <div class="absolute inset-0 z-0 opacity-40">
+          <!-- Sky / Sun Gradient -->
+          <div class="absolute top-[15%] left-[50%] -translate-x-1/2 w-[300px] h-[300px] sm:w-[450px] sm:h-[450px] bg-gradient-to-b from-coral to-teal-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+          
+          <!-- Wave Layers mimicking mountains & sea -->
+          <div class="absolute bottom-0 left-0 w-full h-[50%] bg-gradient-to-t from-teal-500/20 to-transparent"></div>
+          
+          <!-- Left Mountain Silhouette -->
+          <div class="absolute bottom-0 left-0 w-[60%] h-[35%] bg-navy-light/40" style="clip-path: polygon(0 100%, 0 35%, 35% 75%, 65% 40%, 100% 100%);"></div>
+          <!-- Right Mountain Silhouette -->
+          <div class="absolute bottom-0 right-0 w-[70%] h-[45%] bg-navy-dark/60" style="clip-path: polygon(0 100%, 30% 50%, 60% 80%, 85% 45%, 100% 100%);"></div>
+          
+          <!-- Golden Sun -->
+          <div class="absolute bottom-[20%] right-[20%] w-24 h-24 bg-coral/30 rounded-full blur-md"></div>
+          
+          <!-- Dynamic Grid Lines to add tech look -->
+          <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12 text-center">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/5 border border-white/10 rounded-full mb-6 animate-fade-in shadow-inner">
+            <span class="w-2 h-2 rounded-full bg-teal-400 animate-ping"></span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-teal-300">New: Globi Concierge v2.0 Live</span>
+          </div>
+
+          <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-tight animate-fade-in">
+            Your AI-Powered <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-emerald-400 to-coral">Travel Companion</span>
+          </h1>
+
+          <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in">
+            Plan custom itineraries in seconds, track budgets in real-time, and journey confidently with Globi, your smart pocket concierge.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in">
+            <button onclick="enterApp()" class="w-full sm:w-auto px-8 py-4 bg-teal-500 hover:bg-teal-400 text-navy font-bold rounded-2xl shadow-lg shadow-teal-500/25 transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer flex items-center justify-center gap-2">
+              Start Planning Free <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+            <button onclick="playDemo()" class="w-full sm:w-auto px-8 py-4 bg-white/5 border border-white/10 hover:bg-white/10 text-white font-semibold rounded-2xl transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer">
+              <i data-lucide="play" class="w-5 h-5 text-coral"></i> Watch Demo Video
+            </button>
+          </div>
+
+          <!-- Micro Stats Panel -->
+          <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto bg-navy-light/40 backdrop-blur-md p-6 rounded-2xl border border-white/10">
+            <div>
+              <div class="text-3xl font-extrabold text-white">4.9/5</div>
+              <div class="text-xs text-slate-400 mt-1">App Store Rating</div>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold text-teal-400">120K+</div>
+              <div class="text-xs text-slate-400 mt-1">Trips Planned</div>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold text-coral">180+</div>
+              <div class="text-xs text-slate-400 mt-1">Countries Supported</div>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold text-emerald-400">99.9%</div>
+              <div class="text-xs text-slate-400 mt-1">AI Accuracy</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 hover:text-white cursor-pointer" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">
+          <span class="text-xs font-medium tracking-widest uppercase">Explore Features</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 animate-bounce"></i>
+        </div>
+      </section>
+
+      <!-- 6 Features Grid Section -->
+      <section id="features" class="py-24 bg-navy-dark border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+              Everything you need for a <span class="text-teal-400">smart journey</span>
+            </h2>
+            <p class="text-lg text-slate-300">
+              Stop toggling between ten different apps. WanderWise integrates full-featured AI tools directly into your pocket.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="bg-navy-light/30 border border-white/5 p-8 rounded-2xl hover:border-teal-500/30 transition-all duration-300 group hover:-translate-y-1 shadow-md">
+              <div class="p-3.5 bg-teal-500/10 rounded-2xl w-fit text-teal-400 mb-6 group-hover:scale-110 transition-transform">
+                <i data-lucide="sparkles" class="w-7 h-7"></i>
+              </div>
+              <h3 class="font-display text-xl font-bold text-white mb-3">AI Trip Planner</h3>
+              <p class="text-slate-300 leading-relaxed text-sm">
+                Generate highly personalized day-by-day itineraries tailored to your pace, budget, and specific interests in under 10 seconds.
+              </p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-navy-light/30 border border-white/5 p-8 rounded-2xl hover:border-coral/30 transition-all duration-300 group hover:-translate-y-1 shadow-md">
+              <div class="p-3.5 bg-coral/10 rounded-2xl w-fit text-coral mb-6 group-hover:scale-110 transition-transform">
+                <i data-lucide="map-pin" class="w-7 h-7"></i>
+              </div>
+              <h3 class="font-display text-xl font-bold text-white mb-3">City Explorer</h3>
+              <p class="text-slate-300 leading-relaxed text-sm">
+                Unlock local hidden gems, curated neighborhood guides, and cultural insights for over 5,000 cities worldwide.
+              </p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-navy-light/30 border border-white/5 p-8 rounded-2xl hover:border-emerald-500/30 transition-all duration-300 group hover:-translate-y-1 shadow-md">
+              <div class="p-3.5 bg-emerald-500/10 rounded-2xl w-fit text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
+                <i data-lucide="wallet" class="w-7 h-7"></i>
+              </div>
+              <h3 class="font-display text-xl font-bold text-white mb-3">Smart Budget Tracker</h3>
+              <p class="text-slate-300 leading-relaxed text-sm">
+                Set budget targets and log flights, hotels, and dining. Get real-time conversion rates and detailed category ring charts.
+              </p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bg-navy-light/30 border border-white/5 p-8 rounded-2xl hover:border-indigo-500/30 transition-all duration-300 group hover:-translate-y-1 shadow-md">
+              <div class="p-3.5 bg-indigo-500/10 rounded-2xl w-fit text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
+                <i data-lucide="globe" class="w-7 h-7"></i>
+              </div>
+              <h3 class="font-display text-xl font-bold text-white mb-3">AI Concierge Globi</h3>
+              <p class="text-slate-300 leading-relaxed text-sm">
+                Chat with Globi, your 24/7 pocket assistant. Ask for immediate translation help, local rules, dining advice, or weather updates.
+              </p>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="bg-navy-light/30 border border-white/5 p-8 rounded-2xl hover:border-amber-500/30 transition-all duration-300 group hover:-translate-y-1 shadow-md">
+              <div class="p-3.5 bg-amber-500/10 rounded-2xl w-fit text-amber-400 mb-6 group-hover:scale-110 transition-transform">
+                <i data-lucide="trending-up" class="w-7 h-7"></i>
+              </div>
+              <h3 class="font-display text-xl font-bold text-white mb-3">Travel Insights</h3>
+              <p class="text-slate-300 leading-relaxed text-sm">
+                Gain smart insights on your travel tendencies, carbon offsets, average flight statistics, and custom traveler archetype.
+              </p>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="bg-navy-light/30 border border-white/5 p-8 rounded-2xl hover:border-purple-500/30 transition-all duration-300 group hover:-translate-y-1 shadow-md">
+              <div class="p-3.5 bg-purple-500/10 rounded-2xl w-fit text-purple-400 mb-6 group-hover:scale-110 transition-transform">
+                <i data-lucide="mail" class="w-7 h-7"></i>
+              </div>
+              <h3 class="font-display text-xl font-bold text-white mb-3">Email Itineraries</h3>
+              <p class="text-slate-300 leading-relaxed text-sm">
+                Forward your flight, lodging, and activity reservation confirmations to WanderWise to instantly compile unified timelines.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section id="how-it-works" class="py-24 bg-navy border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-3xl mx-auto mb-20">
+            <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+              Your next journey in <span class="text-teal-400">4 easy steps</span>
+            </h2>
+            <p class="text-lg text-slate-300">
+              No complex settings. Input your preferences, let the AI generate, customize to your liking, and explore!
+            </p>
+          </div>
+
+          <!-- Desktop Timeline -->
+          <div class="relative hidden lg:block">
+            <!-- Timeline Horizontal Line -->
+            <div class="absolute top-[68px] left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-teal-500/10 via-teal-500/80 to-coral/10 z-0"></div>
+
+            <div class="grid grid-cols-4 gap-8 relative z-10">
+              <!-- Step 1 -->
+              <div class="text-center">
+                <div class="w-16 h-16 bg-navy border-4 border-teal-500 text-teal-400 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-6 shadow-lg shadow-teal-500/20">
+                  1
+                </div>
+                <h3 class="font-display text-lg font-bold text-white mb-2">Set Your Vibe</h3>
+                <p class="text-slate-300 text-sm leading-relaxed px-4">
+                  Select destination, travel dates, style (solo, family, adventure) and ideal daily budget limits.
+                </p>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="text-center">
+                <div class="w-16 h-16 bg-teal-500 text-navy rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-6 shadow-lg shadow-teal-500/25">
+                  2
+                </div>
+                <h3 class="font-display text-lg font-bold text-white mb-2">Generate by AI</h3>
+                <p class="text-slate-300 text-sm leading-relaxed px-4">
+                  WanderWise reviews millions of data points to generate optimized daily routes and activities.
+                </p>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="text-center">
+                <div class="w-16 h-16 bg-navy border-4 border-teal-500 text-teal-400 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-6 shadow-lg shadow-teal-500/20">
+                  3
+                </div>
+                <h3 class="font-display text-lg font-bold text-white mb-2">Customize & Track</h3>
+                <p class="text-slate-300 text-sm leading-relaxed px-4">
+                  Freely drag/drop activities, map routes, log real expenses, and build collaborative notes.
+                </p>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="text-center">
+                <div class="w-16 h-16 bg-navy border-4 border-coral text-coral rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-6 shadow-lg shadow-coral/20">
+                  4
+                </div>
+                <h3 class="font-display text-lg font-bold text-white mb-2">Go Wander</h3>
+                <p class="text-slate-300 text-sm leading-relaxed px-4">
+                  Run everything offline, view real-time tips, and call Globi whenever you need smart help.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Timeline -->
+          <div class="lg:hidden flex flex-col gap-12 relative pl-8 before:absolute before:left-[15px] before:top-2 before:bottom-2 before:w-0.5 before:bg-white/10">
+            <!-- Step 1 -->
+            <div class="relative">
+              <div class="absolute -left-[33px] top-0 w-8 h-8 bg-navy border-2 border-teal-500 rounded-full flex items-center justify-center text-teal-400 font-bold text-sm shadow-md">
+                1
+              </div>
+              <h3 class="font-display text-lg font-bold text-white mb-1">Set Your Vibe</h3>
+              <p class="text-slate-300 text-sm leading-relaxed">
+                Select destination, travel dates, style (solo, family, adventure) and ideal daily budget limits.
+              </p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="relative">
+              <div class="absolute -left-[33px] top-0 w-8 h-8 bg-teal-500 text-navy rounded-full flex items-center justify-center font-bold text-sm shadow-md">
+                2
+              </div>
+              <h3 class="font-display text-lg font-bold text-teal-400 mb-1">Generate by AI</h3>
+              <p class="text-slate-300 text-sm leading-relaxed">
+                WanderWise reviews millions of data points to generate optimized daily routes and activities.
+              </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="relative">
+              <div class="absolute -left-[33px] top-0 w-8 h-8 bg-navy border-2 border-teal-500 rounded-full flex items-center justify-center text-teal-400 font-bold text-sm shadow-md">
+                3
+              </div>
+              <h3 class="font-display text-lg font-bold text-white mb-1">Customize & Track</h3>
+              <p class="text-slate-300 text-sm leading-relaxed">
+                Freely drag/drop activities, map routes, log real expenses, and build collaborative notes.
+              </p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="relative">
+              <div class="absolute -left-[33px] top-0 w-8 h-8 bg-navy border-2 border-coral rounded-full flex items-center justify-center text-coral font-bold text-sm shadow-md">
+                4
+              </div>
+              <h3 class="font-display text-lg font-bold text-coral mb-1">Go Wander</h3>
+              <p class="text-slate-300 text-sm leading-relaxed">
+                Run everything offline, view real-time tips, and call Globi whenever you need smart help.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section id="pricing" class="py-24 bg-navy-dark border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+              Fair pricing for <span class="text-teal-400">every explorer</span>
+            </h2>
+            <p class="text-lg text-slate-300">
+              Pick the tier that fits your pacing. Upgrade, downgrade, or cancel anytime.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- Free Plan -->
+            <div class="bg-navy-light/20 border border-white/5 p-8 rounded-3xl flex flex-col justify-between hover:border-white/10 transition-all duration-300 shadow-lg">
+              <div>
+                <h3 class="text-lg font-bold text-white mb-1">Free</h3>
+                <p class="text-xs text-slate-400 mb-6">Ideal for short quick trial trips</p>
+                <div class="flex items-baseline gap-1 mb-6">
+                  <span class="text-4xl font-extrabold text-white">$0</span>
+                  <span class="text-sm text-slate-400">/ forever</span>
+                </div>
+                <div class="h-px bg-white/10 mb-6"></div>
+                <ul class="flex flex-col gap-4 text-sm text-slate-300">
+                  <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-teal-400"></i> 1 AI Itinerary per Month</li>
+                  <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-teal-400"></i> Basic Budget Logs</li>
+                  <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-teal-400"></i> Online access only</li>
+                  <li class="flex items-center gap-2.5 text-slate-500 line-through"><i data-lucide="x" class="w-4 h-4"></i> Custom offline sync</li>
+                  <li class="flex items-center gap-2.5 text-slate-500 line-through"><i data-lucide="x" class="w-4 h-4"></i> Globi Concierge 24/7</li>
+                </ul>
+              </div>
+              <button onclick="enterApp()" class="w-full py-3 bg-white/5 border border-white/10 hover:bg-white/10 text-white font-semibold rounded-2xl transition-all duration-200 mt-8 cursor-pointer">
+                Get Started
+              </button>
+            </div>
+
+            <!-- Explorer Plan (Popular) -->
+            <div class="bg-gradient-to-b from-navy-light to-navy-dark border-2 border-teal-500 p-8 rounded-3xl flex flex-col justify-between hover:scale-[1.02] transition-all duration-300 relative shadow-2xl shadow-teal-500/5">
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-teal-500 text-navy font-bold text-xs uppercase tracking-widest rounded-full shadow-md">
+                Popular Choice
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white mb-1">Explorer</h3>
+                <p class="text-xs text-teal-400 mb-6">Best for active travelers & nomads</p>
+                <div class="flex items-baseline gap-1 mb-6">
+                  <span class="text-4xl font-extrabold text-white">$9</span>
+                  <span class="text-sm text-slate-400">/ month</span>
+                </div>
+                <div class="h-px bg-white/10 mb-6"></div>
+                <ul class="flex flex-col gap-4 text-sm text-slate-300">
+                  <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-teal-400"></i> 10 AI Itineraries per Month</li>
+                  <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-teal-400"></i> Premium City Guides</li>
+                  <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-teal-400"></i> Advanced Budget Tracker</li>
+                  <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-teal-400"></i> Partial Offline Storage</li>
+                  <li class="flex items-center gap-2.5 text-slate-500 line-through"><i data-lucide="x" class="w-4 h-4"></i> Globi Concierge 24/7</li>
+                </ul>
+              </div>
+              <button onclick="enterApp()" class="w-full py-3 bg-teal-500 hover:bg-teal-400 text-navy font-bold rounded-2xl shadow-lg shadow-teal-500/20 transition-all duration-200 mt-8 cursor-pointer">
+                Unlock Explorer
+              </button>
+            </div>
+
+            <!-- Wanderer Plan -->
+            <div class="bg-navy-light/20 border border-white/5 p-8 rounded-3xl flex flex-col justify-between hover:border-white/10 transition-all duration-300 shadow-lg">
+              <div>
+                <h3 class="text-lg font-bold text-white mb-1">Wanderer</h3>
+                <p class="text-xs text-slate-400 mb-6">Ultimate tool for power globetrotters</p>
+                <div class="flex items-baseline gap-1 mb-6">
+                  <span class="text-4xl font-extrabold text-white">$19</span>
+                  <span class="text-sm text-slate-400">/ month</span>
+                </div>
+                <div class="h-px bg-white/10 mb-6"></div>
+                <ul class="flex flex-col gap-4 text-sm text-slate-300">
+                  <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-teal-400"></i> Unlimited AI Itineraries</li>
+                  <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-teal-400"></i> Full offline cache sync</li>
+                  <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-teal-400"></i> Multi-Currency dynamic wallet</li>
+                  <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-teal-400"></i> 24/7 Globi Concierge</li>
+                  <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-teal-400"></i> PDF & Calendar sync exports</li>
+                </ul>
+              </div>
+              <button onclick="enterApp()" class="w-full py-3 bg-white/5 border border-white/10 hover:bg-white/10 text-white font-semibold rounded-2xl transition-all duration-200 mt-8 cursor-pointer">
+                Join Wanderer
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section id="testimonials" class="py-24 bg-navy border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+              Loved by <span class="text-teal-400">global explorers</span>
+            </h2>
+            <p class="text-lg text-slate-300">
+              Read how WanderWise helps real travelers simplify, plan, and enjoy their trips.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Testimonial 1 -->
+            <div class="bg-navy-light/30 border border-white/5 p-8 rounded-2xl relative shadow-md">
+              <div class="text-teal-400 mb-4 flex gap-1">
+                <i data-lucide="star" class="w-4.5 h-4.5 fill-current"></i>
+                <i data-lucide="star" class="w-4.5 h-4.5 fill-current"></i>
+                <i data-lucide="star" class="w-4.5 h-4.5 fill-current"></i>
+                <i data-lucide="star" class="w-4.5 h-4.5 fill-current"></i>
+                <i data-lucide="star" class="w-4.5 h-4.5 fill-current"></i>
+              </div>
+              <p class="text-slate-300 italic mb-6 text-sm leading-relaxed">
+                "WanderWise transformed my solo trip to Tokyo! Globi helped me find an amazing hidden ramen shop at 2 AM, and the budget tool saved me hundreds."
+              </p>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-teal-500 to-emerald-400 flex items-center justify-center font-bold text-navy text-sm">
+                  SM
+                </div>
+                <div>
+                  <div class="text-sm font-bold text-white">Sarah M.</div>
+                  <div class="text-xs text-slate-400">Solo Explorer</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="bg-navy-light/30 border border-white/5 p-8 rounded-2xl relative shadow-md">
+              <div class="text-teal-400 mb-4 flex gap-1">
+                <i data-lucide="star" class="w-4.5 h-4.5 fill-current"></i>
+                <i data-lucide="star" class="w-4.5 h-4.5 fill-current"></i>
+                <i data-lucide="star" class="w-4.5 h-4.5 fill-current"></i>
+                <i data-lucide="star" class="w-4.5 h-4.5 fill-current"></i>
+                <i data-lucide="star" class="w-4.5 h-4.5 fill-current"></i>
+              </div>
+              <p class="text-slate-300 italic mb-6 text-sm leading-relaxed">
+                "The AI Trip Planner created a 7-day Rome itinerary that balanced sightseeing and rest perfectly. My family loved every single second of it."
+              </p>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-coral to-pink-500 flex items-center justify-center font-bold text-navy text-sm">
+                  DL
+                </div>
+                <div>
+                  <div class="text-sm font-bold text-white">David L.</div>
+                  <div class="text-xs text-slate-400">Family Traveler</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="bg-navy-light/30 border border-white/5 p-8 rounded-2xl relative shadow-md">
+              <div class="text-teal-400 mb-4 flex gap-1">
+                <i data-lucide="star" class="w-4.5 h-4.5 fill-current"></i>
+                <i data-lucide="star" class="w-4.5 h-4.5 fill-current"></i>
+                <i data-lucide="star" class="w-4.5 h-4.5 fill-current"></i>
+                <i data-lucide="star" class="w-4.5 h-4.5 fill-current"></i>
+                <i data-lucide="star" class="w-4.5 h-4.5 fill-current"></i>
+              </div>
+              <p class="text-slate-300 italic mb-6 text-sm leading-relaxed">
+                "I travel full-time as a digital nomad, and the multi-currency budget tracker is an absolute game-changer. Simply indispensable for my workflow."
+              </p>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-500 to-teal-400 flex items-center justify-center font-bold text-navy text-sm">
+                  ER
+                </div>
+                <div>
+                  <div class="text-sm font-bold text-white">Elena R.</div>
+                  <div class="text-xs text-slate-400">Digital Nomad</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Banner -->
+      <section class="py-20 bg-gradient-to-r from-teal-500/20 via-teal-500/5 to-coral/10 border-t border-b border-white/10 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-4">Ready to explore the world smarter?</h2>
+          <p class="text-lg text-slate-300 mb-8 max-w-xl mx-auto">
+            Join thousands of travelers making memories with WanderWise. Start your free trial today.
+          </p>
+          <button onclick="enterApp()" class="px-8 py-4 bg-teal-500 hover:bg-teal-400 text-navy font-bold rounded-2xl shadow-xl shadow-teal-500/25 transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer">
+            Start Free Trial Now
+          </button>
+        </div>
+      </section>
+
+      <!-- 4-Column Footer -->
+      <footer class="bg-navy-dark pt-16 pb-8 border-t border-white/5 text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          <!-- Col 1 -->
+          <div class="col-span-2 md:col-span-1">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="p-1.5 bg-teal-500 rounded-lg text-navy">
+                <i data-lucide="compass" class="w-4.5 h-4.5"></i>
+              </div>
+              <span class="font-display text-lg font-bold text-white">WanderWise</span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+              Empowering global explorers with intelligent, localized AI tools to design optimized custom journeys.
+            </p>
+            <div class="flex gap-4">
+              <a href="#" class="hover:text-teal-400 transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+              <a href="#" class="hover:text-teal-400 transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+              <a href="#" class="hover:text-teal-400 transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+              <a href="#" class="hover:text-teal-400 transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+            </div>
+          </div>
+
+          <!-- Col 2 -->
+          <div>
+            <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Product</h4>
+            <ul class="flex flex-col gap-2 text-xs">
+              <li><a href="#features" class="hover:text-white transition-colors">Features</a></li>
+              <li><a href="#pricing" class="hover:text-white transition-colors">Pricing Plans</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Roadmap</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Data Security</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3 -->
+          <div>
+            <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Company</h4>
+            <ul class="flex flex-col gap-2 text-xs">
+              <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Press Kit</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Official Blog</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 4 -->
+          <div>
+            <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Support</h4>
+            <ul class="flex flex-col gap-2 text-xs">
+              <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Contact Support</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Travel FAQs</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">System Status</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+          <span>&copy; 2026 WanderWise Inc. All rights reserved. Made with ❤️ for world travelers.</span>
+          <div class="flex gap-6">
+            <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+            <a href="#" class="hover:text-white transition-colors">Cookie Settings</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- VIEW: TOASTER NOTIFICATIONS -->
+    <div id="toast" class="fixed top-5 right-5 z-[200] bg-rose-500 text-white px-4 py-3 rounded-xl shadow-lg transform translate-y-[-20px] opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2">
+      <i data-lucide="alert-circle" class="w-5 h-5"></i>
+      <span id="toast-message"></span>
+    </div>
+
+    <!-- VIEW: AUTHENTICATION -->
+    <div id="auth-view" class="view min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-navy-dark via-navy to-navy-light text-slate-100 view-hidden">
+      <div class="max-w-md w-full bg-navy-light/95 backdrop-blur-md p-6 rounded-3xl border border-white/10 shadow-2xl animate-fade-in">
+        <!-- Logo -->
+        <div class="flex items-center gap-2 justify-center mb-6">
+          <div class="p-2 bg-teal-500 rounded-lg text-navy shadow-lg shadow-teal-500/20">
+            <i data-lucide="compass" class="w-6 h-6 animate-spin-slow"></i>
+          </div>
+          <span class="font-display text-2xl font-bold tracking-tight text-white">Wander<span class="text-teal-400">Wise</span></span>
+        </div>
+        <p class="text-center text-slate-300 text-sm mb-6 font-medium">Your AI Travel Companion</p>
+
+        <!-- Tabs -->
+        <div class="flex border-b border-white/10 mb-6">
+          <button id="tab-signin-btn" onclick="switchAuthTab('signin')" class="flex-1 pb-3 text-center text-sm font-semibold border-b-2 border-teal-500 text-teal-400 focus:outline-none cursor-pointer">Sign In</button>
+          <button id="tab-signup-btn" onclick="switchAuthTab('signup')" class="flex-1 pb-3 text-center text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white focus:outline-none cursor-pointer">Sign Up</button>
+        </div>
+
+        <!-- Sign In Form -->
+        <form id="signin-form" onsubmit="handleSignIn(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Email Address</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+              </span>
+              <input type="email" id="signin-email" required placeholder="name@example.com" class="w-full pl-9 pr-3 py-2.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 text-sm text-white placeholder-slate-500">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Password</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+              </span>
+              <input type="password" id="signin-password" required placeholder="••••••••" class="w-full pl-9 pr-3 py-2.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 text-sm text-white placeholder-slate-500">
+            </div>
+          </div>
+          <button type="submit" class="w-full py-3 bg-teal-500 hover:bg-teal-400 text-navy font-bold rounded-xl shadow-lg shadow-teal-500/20 transition-all cursor-pointer text-sm flex items-center justify-center gap-2">
+            Sign In <i data-lucide="log-in" class="w-4 h-4"></i>
+          </button>
+        </form>
+
+        <!-- Sign Up Form (Hidden by default) -->
+        <form id="signup-form" onsubmit="handleSignUp(event)" class="space-y-4 hidden">
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Full Name</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
+                <i data-lucide="user" class="w-4 h-4"></i>
+              </span>
+              <input type="text" id="signup-name" required placeholder="John Doe" class="w-full pl-9 pr-3 py-2.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 text-sm text-white placeholder-slate-500">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Email Address</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+              </span>
+              <input type="email" id="signup-email" required placeholder="name@example.com" class="w-full pl-9 pr-3 py-2.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 text-sm text-white placeholder-slate-500">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Password</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+              </span>
+              <input type="password" id="signup-password" required placeholder="••••••••" class="w-full pl-9 pr-3 py-2.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 text-sm text-white placeholder-slate-500">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Confirm Password</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+              </span>
+              <input type="password" id="signup-confirm-password" required placeholder="••••••••" class="w-full pl-9 pr-3 py-2.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 text-sm text-white placeholder-slate-500">
+            </div>
+          </div>
+          <button type="submit" class="w-full py-3 bg-teal-500 hover:bg-teal-400 text-navy font-bold rounded-xl shadow-lg shadow-teal-500/20 transition-all cursor-pointer text-sm flex items-center justify-center gap-2">
+            Create Account <i data-lucide="user-plus" class="w-4 h-4"></i>
+          </button>
+        </form>
+
+        <!-- Divider -->
+        <div class="relative my-6">
+          <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/10"></div></div>
+          <div class="relative flex justify-center text-xs uppercase"><span class="bg-navy-light px-3 text-slate-500 font-semibold tracking-wider">or</span></div>
+        </div>
+
+        <!-- Guest Button -->
+        <button onclick="continueAsGuest()" class="w-full py-3 bg-white/5 border border-white/10 hover:bg-white/10 text-white font-semibold rounded-xl transition-all cursor-pointer text-sm flex items-center justify-center gap-2">
+          <i data-lucide="user-check" class="w-4 h-4 text-teal-400"></i> Continue as Guest
+        </button>
+      </div>
+    </div>
+
+    <!-- VIEW: ONBOARDING WIZARD -->
+    <div id="onboarding-view" class="view min-h-screen bg-navy text-slate-100 flex items-center justify-center p-4 md:p-8 view-hidden">
+      <div class="max-w-2xl w-full bg-navy-light/95 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-white/10 shadow-2xl animate-fade-in flex flex-col relative">
+        
+        <!-- Wizard Header -->
+        <div class="mb-8">
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-xs font-semibold uppercase tracking-widest text-teal-400" id="onboarding-step-indicator">Step 1 of 5</span>
+            <span class="text-xs text-slate-400 font-medium" id="onboarding-progress-text">Basics & Home</span>
+          </div>
+          <!-- Progress Bar -->
+          <div class="w-full bg-white/10 h-2 rounded-full overflow-hidden">
+            <div id="onboarding-progress-bar" class="bg-teal-500 h-full rounded-full transition-all duration-300" style="width: 20%"></div>
+          </div>
+        </div>
+
+        <!-- Wizard Steps Container -->
+        <div class="flex-1">
+          
+          <!-- STEP 1: BASICS -->
+          <div id="onboarding-step-1" class="onboarding-step space-y-5 animate-fade-in">
+            <div>
+              <h3 class="font-display text-xl font-bold text-white mb-2">Tell us about yourself</h3>
+              <p class="text-xs text-slate-400 mb-4">Let's set up your foundational preferences to calibrate your travel engine.</p>
+            </div>
+            
+            <div class="space-y-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Full Name</label>
+                <input type="text" id="onboarding-name" placeholder="Your name" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 text-sm text-white placeholder-slate-500">
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Date of Birth</label>
+                  <input type="date" id="onboarding-dob" required class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 text-sm text-white [color-scheme:dark]">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Preferred Currency</label>
+                  <div class="grid grid-cols-4 gap-1.5 bg-white/5 p-1 rounded-xl border border-white/10">
+                    <button type="button" onclick="selectCurrency('INR')" id="curr-INR" class="py-2 text-xs font-bold rounded-lg focus:outline-none transition-all cursor-pointer bg-teal-500 text-navy">INR</button>
+                    <button type="button" onclick="selectCurrency('USD')" id="curr-USD" class="py-2 text-xs font-bold rounded-lg focus:outline-none transition-all cursor-pointer text-slate-400 hover:text-white">USD</button>
+                    <button type="button" onclick="selectCurrency('EUR')" id="curr-EUR" class="py-2 text-xs font-bold rounded-lg focus:outline-none transition-all cursor-pointer text-slate-400 hover:text-white">EUR</button>
+                    <button type="button" onclick="selectCurrency('GBP')" id="curr-GBP" class="py-2 text-xs font-bold rounded-lg focus:outline-none transition-all cursor-pointer text-slate-400 hover:text-white">GBP</button>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Home City</label>
+                <input type="text" id="onboarding-homecity" placeholder="e.g. Mumbai" class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 text-sm text-white placeholder-slate-500">
+                <div class="mt-2.5">
+                  <div class="text-[11px] text-slate-400 font-semibold mb-1.5 uppercase tracking-wider">Suggestions:</div>
+                  <div class="flex flex-wrap gap-1.5">
+                    <button type="button" onclick="setHomeCity('Mumbai')" class="px-2.5 py-1 bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 rounded-lg text-xs transition-all cursor-pointer">Mumbai</button>
+                    <button type="button" onclick="setHomeCity('Delhi')" class="px-2.5 py-1 bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 rounded-lg text-xs transition-all cursor-pointer">Delhi</button>
+                    <button type="button" onclick="setHomeCity('Bengaluru')" class="px-2.5 py-1 bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 rounded-lg text-xs transition-all cursor-pointer">Bengaluru</button>
+                    <button type="button" onclick="setHomeCity('New York')" class="px-2.5 py-1 bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 rounded-lg text-xs transition-all cursor-pointer">New York</button>
+                    <button type="button" onclick="setHomeCity('London')" class="px-2.5 py-1 bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 rounded-lg text-xs transition-all cursor-pointer">London</button>
+                    <button type="button" onclick="setHomeCity('Tokyo')" class="px-2.5 py-1 bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 rounded-lg text-xs transition-all cursor-pointer">Tokyo</button>
+                    <button type="button" onclick="setHomeCity('Paris')" class="px-2.5 py-1 bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 rounded-lg text-xs transition-all cursor-pointer">Paris</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2: TRAVEL STYLE -->
+          <div id="onboarding-step-2" class="onboarding-step space-y-5 animate-fade-in hidden">
+            <div>
+              <h3 class="font-display text-xl font-bold text-white mb-2">Choose your Travel Style</h3>
+              <p class="text-xs text-slate-400 mb-4">Pick one core travel style and preferred trip duration.</p>
+            </div>
+
+            <!-- Styles Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="travel-styles-container">
+              <button type="button" onclick="selectTravelStyle('Adventure')" id="style-Adventure" class="travel-style-card text-left p-3.5 bg-white/5 border border-white/10 rounded-2xl hover:border-teal-500/40 transition-all cursor-pointer flex gap-3">
+                <span class="text-2xl mt-0.5 select-none">⛰️</span>
+                <div>
+                  <div class="text-xs font-bold text-white">Adventure</div>
+                  <div class="text-[10px] text-slate-400 mt-0.5">High-altitude thrills, scaling peaks, and off-grid exploration.</div>
+                </div>
+              </button>
+              
+              <button type="button" onclick="selectTravelStyle('Relaxation')" id="style-Relaxation" class="travel-style-card text-left p-3.5 bg-white/5 border border-white/10 rounded-2xl hover:border-teal-500/40 transition-all cursor-pointer flex gap-3">
+                <span class="text-2xl mt-0.5 select-none">🧘</span>
+                <div>
+                  <div class="text-xs font-bold text-white">Relaxation</div>
+                  <div class="text-[10px] text-slate-400 mt-0.5">Recharging at serene beaches, luxury spas, and slow days.</div>
+                </div>
+              </button>
+
+              <button type="button" onclick="selectTravelStyle('Cultural')" id="style-Cultural" class="travel-style-card text-left p-3.5 bg-white/5 border border-white/10 rounded-2xl hover:border-teal-500/40 transition-all cursor-pointer flex gap-3">
+                <span class="text-2xl mt-0.5 select-none">🏛️</span>
+                <div>
+                  <div class="text-xs font-bold text-white">Cultural</div>
+                  <div class="text-[10px] text-slate-400 mt-0.5">Uncovering historic sights, local museums, and ancient heritages.</div>
+                </div>
+              </button>
+
+              <button type="button" onclick="selectTravelStyle('Foodie')" id="style-Foodie" class="travel-style-card text-left p-3.5 bg-white/5 border border-white/10 rounded-2xl hover:border-teal-500/40 transition-all cursor-pointer flex gap-3">
+                <span class="text-2xl mt-0.5 select-none">🍜</span>
+                <div>
+                  <div class="text-xs font-bold text-white">Foodie</div>
+                  <div class="text-[10px] text-slate-400 mt-0.5">Indulging in street markets, local delicacies, and cooking classes.</div>
+                </div>
+              </button>
+
+              <button type="button" onclick="selectTravelStyle('Backpacker')" id="style-Backpacker" class="travel-style-card text-left p-3.5 bg-white/5 border border-white/10 rounded-2xl hover:border-teal-500/40 transition-all cursor-pointer flex gap-3">
+                <span class="text-2xl mt-0.5 select-none">🎒</span>
+                <div>
+                  <div class="text-xs font-bold text-white">Backpacker</div>
+                  <div class="text-[10px] text-slate-400 mt-0.5">Budget-friendly hostels, transit, and authentic raw journeys.</div>
+                </div>
+              </button>
+
+              <button type="button" onclick="selectTravelStyle('Luxury')" id="style-Luxury" class="travel-style-card text-left p-3.5 bg-white/5 border border-white/10 rounded-2xl hover:border-teal-500/40 transition-all cursor-pointer flex gap-3">
+                <span class="text-2xl mt-0.5 select-none">💎</span>
+                <div>
+                  <div class="text-xs font-bold text-white">Luxury</div>
+                  <div class="text-[10px] text-slate-400 mt-0.5">Bespoke services, five-star villas, and exclusive VIP itineraries.</div>
+                </div>
+              </button>
+            </div>
+
+            <!-- Trip Duration -->
+            <div class="mt-4">
+              <label class="block text-xs font-semibold text-slate-400 mb-2.5 uppercase tracking-wider">Preferred Trip Duration</label>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <button type="button" onclick="selectDuration('Weekend')" id="dur-Weekend" class="duration-btn py-2.5 px-3 bg-white/5 border border-white/10 hover:border-white/20 text-xs font-bold rounded-xl focus:outline-none transition-all cursor-pointer">Weekend</button>
+                <button type="button" onclick="selectDuration('1 week')" id="dur-1-week" class="duration-btn py-2.5 px-3 bg-white/5 border border-white/10 hover:border-white/20 text-xs font-bold rounded-xl focus:outline-none transition-all cursor-pointer">1 Week</button>
+                <button type="button" onclick="selectDuration('2 weeks')" id="dur-2-weeks" class="duration-btn py-2.5 px-3 bg-white/5 border border-white/10 hover:border-white/20 text-xs font-bold rounded-xl focus:outline-none transition-all cursor-pointer">2 Weeks</button>
+                <button type="button" onclick="selectDuration('1 month+')" id="dur-1-month" class="duration-btn py-2.5 px-3 bg-white/5 border border-white/10 hover:border-white/20 text-xs font-bold rounded-xl focus:outline-none transition-all cursor-pointer">1 Month+</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: BUDGET & STAY -->
+          <div id="onboarding-step-3" class="onboarding-step space-y-5 animate-fade-in hidden">
+            <div>
+              <h3 class="font-display text-xl font-bold text-white mb-2">Budget & Accommodation</h3>
+              <p class="text-xs text-slate-400 mb-4">Set your standard financial spend boundaries and stays preferences.</p>
+            </div>
+
+            <!-- Budget Tier Grid -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-400 mb-2.5 uppercase tracking-wider">Budget Tier</label>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <button type="button" onclick="selectBudgetTier('Budget')" id="tier-Budget" class="budget-tier-card text-left p-3.5 bg-white/5 border border-white/10 rounded-2xl hover:border-teal-500/40 transition-all cursor-pointer">
+                  <div class="text-sm font-bold text-teal-400 flex justify-between items-center">
+                    <span>Budget</span>
+                    <span class="text-lg">💵</span>
+                  </div>
+                  <div class="text-[10px] text-slate-400 mt-1" id="spend-hint-Budget">~₹2,000 / day</div>
+                  <div class="text-[9px] text-slate-500 mt-1">Cost-conscious, smart, essential services.</div>
+                </button>
+
+                <button type="button" onclick="selectBudgetTier('Mid-range')" id="tier-Mid-range" class="budget-tier-card text-left p-3.5 bg-white/5 border border-white/10 rounded-2xl hover:border-teal-500/40 transition-all cursor-pointer">
+                  <div class="text-sm font-bold text-teal-400 flex justify-between items-center">
+                    <span>Mid-range</span>
+                    <span class="text-lg">💳</span>
+                  </div>
+                  <div class="text-[10px] text-slate-400 mt-1" id="spend-hint-Mid-range">~₹7,000 / day</div>
+                  <div class="text-[9px] text-slate-500 mt-1">Perfect balance of cozy comforts & great experiences.</div>
+                </button>
+
+                <button type="button" onclick="selectBudgetTier('Luxury')" id="tier-Luxury" class="budget-tier-card text-left p-3.5 bg-white/5 border border-white/10 rounded-2xl hover:border-teal-500/40 transition-all cursor-pointer">
+                  <div class="text-sm font-bold text-teal-400 flex justify-between items-center">
+                    <span>Luxury</span>
+                    <span class="text-lg">👑</span>
+                  </div>
+                  <div class="text-[10px] text-slate-400 mt-1" id="spend-hint-Luxury">~₹25,000 / day</div>
+                  <div class="text-[9px] text-slate-500 mt-1">Bespoke luxury stays and high-end services.</div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Accommodation Preference Chips -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-400 mb-2.5 uppercase tracking-wider">Accommodation Preferences (Multi-select)</label>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" onclick="toggleAccommodation('Hostel')" id="accom-Hostel" class="accom-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Hostel</button>
+                <button type="button" onclick="toggleAccommodation('Hotel')" id="accom-Hotel" class="accom-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Hotel</button>
+                <button type="button" onclick="toggleAccommodation('Airbnb')" id="accom-Airbnb" class="accom-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Airbnb</button>
+                <button type="button" onclick="toggleAccommodation('Resort')" id="accom-Resort" class="accom-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Resort</button>
+                <button type="button" onclick="toggleAccommodation('Homestay')" id="accom-Homestay" class="accom-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Homestay</button>
+              </div>
+            </div>
+
+            <!-- Travel Companions -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-400 mb-2.5 uppercase tracking-wider">Travel Companions</label>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <button type="button" onclick="selectCompanions('Solo')" id="comp-Solo" class="comp-btn py-2 px-3 bg-white/5 border border-white/10 text-xs font-bold rounded-xl transition-all cursor-pointer">Solo</button>
+                <button type="button" onclick="selectCompanions('Couple')" id="comp-Couple" class="comp-btn py-2 px-3 bg-white/5 border border-white/10 text-xs font-bold rounded-xl transition-all cursor-pointer">Couple</button>
+                <button type="button" onclick="selectCompanions('Family')" id="comp-Family" class="comp-btn py-2 px-3 bg-white/5 border border-white/10 text-xs font-bold rounded-xl transition-all cursor-pointer">Family</button>
+                <button type="button" onclick="selectCompanions('Friends')" id="comp-Friends" class="comp-btn py-2 px-3 bg-white/5 border border-white/10 text-xs font-bold rounded-xl transition-all cursor-pointer">Friends</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 4: PREFERENCES & RESTRICTIONS -->
+          <div id="onboarding-step-4" class="onboarding-step space-y-5 animate-fade-in hidden">
+            <div>
+              <h3 class="font-display text-xl font-bold text-white mb-2">Preferences & Food Restrictions</h3>
+              <p class="text-xs text-slate-400 mb-4">Refine your profile with precise filters, spoken languages, and mobility levels.</p>
+            </div>
+
+            <!-- Food Preferences -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-400 mb-2 uppercase tracking-wider">Food Preferences / Restrictions</label>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" onclick="toggleFoodPref('No Preference')" id="food-No-Preference" class="food-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">No Preference</button>
+                <button type="button" onclick="toggleFoodPref('Vegetarian')" id="food-Vegetarian" class="food-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Vegetarian</button>
+                <button type="button" onclick="toggleFoodPref('Vegan')" id="food-Vegan" class="food-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Vegan</button>
+                <button type="button" onclick="toggleFoodPref('Halal')" id="food-Halal" class="food-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Halal</button>
+                <button type="button" onclick="toggleFoodPref('Kosher')" id="food-Kosher" class="food-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Kosher</button>
+                <button type="button" onclick="toggleFoodPref('Gluten-Free')" id="food-Gluten-Free" class="food-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Gluten-Free</button>
+              </div>
+            </div>
+
+            <!-- Interests -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-400 mb-2 uppercase tracking-wider">Interests (Multi-select)</label>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" onclick="toggleInterest('Beaches')" id="interest-Beaches" class="interest-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Beaches</button>
+                <button type="button" onclick="toggleInterest('Mountains')" id="interest-Mountains" class="interest-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Mountains</button>
+                <button type="button" onclick="toggleInterest('History')" id="interest-History" class="interest-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">History</button>
+                <button type="button" onclick="toggleInterest('Nightlife')" id="interest-Nightlife" class="interest-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Nightlife</button>
+                <button type="button" onclick="toggleInterest('Food')" id="interest-Food" class="interest-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Food</button>
+                <button type="button" onclick="toggleInterest('Shopping')" id="interest-Shopping" class="interest-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Shopping</button>
+                <button type="button" onclick="toggleInterest('Wildlife')" id="interest-Wildlife" class="interest-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Wildlife</button>
+                <button type="button" onclick="toggleInterest('Adventure Sports')" id="interest-Adventure-Sports" class="interest-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Adventure Sports</button>
+              </div>
+            </div>
+
+            <!-- Languages Spoken -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-400 mb-2 uppercase tracking-wider">Languages Spoken</label>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" onclick="toggleLanguage('English')" id="lang-English" class="lang-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">English</button>
+                <button type="button" onclick="toggleLanguage('Hindi')" id="lang-Hindi" class="lang-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Hindi</button>
+                <button type="button" onclick="toggleLanguage('Spanish')" id="lang-Spanish" class="lang-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Spanish</button>
+                <button type="button" onclick="toggleLanguage('French')" id="lang-French" class="lang-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">French</button>
+                <button type="button" onclick="toggleLanguage('German')" id="lang-German" class="lang-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">German</button>
+                <button type="button" onclick="toggleLanguage('Japanese')" id="lang-Japanese" class="lang-chip px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-bold transition-all cursor-pointer">Japanese</button>
+              </div>
+            </div>
+
+            <!-- Mobility Level Slider -->
+            <div>
+              <div class="flex justify-between items-center mb-1">
+                <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Mobility Level</label>
+                <span id="mobility-val" class="text-xs font-bold text-teal-400">Moderate</span>
+              </div>
+              <input type="range" id="onboarding-mobility" min="1" max="3" value="2" oninput="updateMobilityLabel(this.value)" class="w-full accent-teal-500 cursor-pointer h-2 bg-white/10 rounded-lg appearance-none">
+              <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                <span>Low (Slow paces)</span>
+                <span>Moderate (Active walks)</span>
+                <span>High (Strenuous hikes)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 5: FINAL SUMMARY CARD -->
+          <div id="onboarding-step-5" class="onboarding-step space-y-5 animate-fade-in hidden">
+            <div class="text-center">
+              <span class="text-3xl">✈️</span>
+              <h3 class="font-display text-xl font-bold text-white mt-2">Your WanderWise Profile is Ready!</h3>
+              <p class="text-xs text-slate-400 mt-1">We've compiled your preferences into a customized travel persona.</p>
+            </div>
+
+            <!-- Summary Details -->
+            <div class="bg-white/5 border border-white/10 p-5 rounded-2xl space-y-4">
+              <div class="flex justify-between items-center pb-3 border-b border-white/10">
+                <div>
+                  <div class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Travel Persona</div>
+                  <div class="text-sm font-bold text-teal-400" id="summary-persona">Backpacker Adventurer</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Daily Budget</div>
+                  <div class="text-sm font-extrabold text-white" id="summary-dailybudget">$25 / day</div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4 text-xs">
+                <div>
+                  <span class="text-slate-400 block mb-0.5">Explorer Name:</span>
+                  <strong class="text-white" id="summary-name">John Doe</strong>
+                </div>
+                <div>
+                  <span class="text-slate-400 block mb-0.5">Home City:</span>
+                  <strong class="text-white" id="summary-homecity">New York</strong>
+                </div>
+                <div>
+                  <span class="text-slate-400 block mb-0.5">Travel Style:</span>
+                  <strong class="text-white" id="summary-style">Adventure</strong>
+                </div>
+                <div>
+                  <span class="text-slate-400 block mb-0.5">Trip Duration:</span>
+                  <strong class="text-white" id="summary-duration">Weekend</strong>
+                </div>
+              </div>
+
+              <!-- Budget Category Split -->
+              <div class="space-y-2 pt-3 border-t border-white/10">
+                <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Suggested Budget Allocation</div>
+                <div class="grid grid-cols-5 gap-1.5 h-6 rounded-lg overflow-hidden text-[10px] font-bold text-center">
+                  <div class="bg-indigo-500 text-navy flex items-center justify-center cursor-help" title="Accommodation (40%)">Stay: 40%</div>
+                  <div class="bg-teal-500 text-navy flex items-center justify-center cursor-help" title="Food (25%)">Food: 25%</div>
+                  <div class="bg-coral text-navy flex items-center justify-center cursor-help" title="Transport (15%)">Transit: 15%</div>
+                  <div class="bg-pink-500 text-navy flex items-center justify-center cursor-help" title="Activities (15%)">Acts: 15%</div>
+                  <div class="bg-amber-400 text-navy flex items-center justify-center cursor-help" title="Shopping (5%)">Shop: 5%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Wizard Navigation Footer -->
+        <div class="flex justify-between items-center mt-8 pt-4 border-t border-white/10" id="onboarding-nav">
+          <button type="button" id="onboarding-back" onclick="onboardingPrevStep()" class="px-5 py-2.5 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-xl text-xs transition-all cursor-pointer invisible">
+            Back
+          </button>
+          <button type="button" id="onboarding-next" onclick="onboardingNextStep()" class="px-5 py-2.5 bg-teal-500 hover:bg-teal-400 text-navy font-bold rounded-xl text-xs shadow-lg shadow-teal-500/20 transition-all cursor-pointer">
+            Next Step <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 2: APP SHELL -->
+    <div id="app-view" class="view min-h-screen bg-[#F8F9FA] text-slate-800 flex flex-col md:flex-row view-hidden">
+      <!-- Sidebar Nav (Desktop only, hidden on mobile) -->
+      <aside class="hidden md:flex flex-col w-64 bg-navy text-slate-100 border-r border-navy-light shrink-0">
+        <!-- Logo Header -->
+        <div class="p-6 border-b border-white/10 flex items-center gap-2">
+          <div class="p-1.5 bg-teal-500 rounded-lg text-navy">
+            <i data-lucide="compass" class="w-5 h-5 animate-spin-slow"></i>
+          </div>
+          <span class="font-display text-xl font-bold tracking-tight text-white">Wander<span class="text-teal-400">Wise</span></span>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="flex-1 px-4 py-6 flex flex-col gap-1.5">
+          <button onclick="switchTab('dashboard')" id="tab-btn-dashboard" class="tab-btn w-full px-4 py-3 rounded-xl flex items-center gap-3.5 text-sm font-medium transition-all text-teal-400 bg-white/5 border-l-4 border-teal-500">
+            <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Dashboard
+          </button>
+          <button onclick="switchTab('trips')" id="tab-btn-trips" class="tab-btn w-full px-4 py-3 rounded-xl flex items-center gap-3.5 text-sm font-medium transition-all text-slate-400 hover:text-white hover:bg-white/5 border-l-4 border-transparent">
+            <i data-lucide="briefcase" class="w-5 h-5"></i> Trips
+          </button>
+          <button onclick="switchTab('explore')" id="tab-btn-explore" class="tab-btn w-full px-4 py-3 rounded-xl flex items-center gap-3.5 text-sm font-medium transition-all text-slate-400 hover:text-white hover:bg-white/5 border-l-4 border-transparent">
+            <i data-lucide="compass" class="w-5 h-5"></i> Explore
+          </button>
+          <button onclick="switchTab('concierge')" id="tab-btn-concierge" class="tab-btn w-full px-4 py-3 rounded-xl flex items-center gap-3.5 text-sm font-medium transition-all text-slate-400 hover:text-white hover:bg-white/5 border-l-4 border-transparent relative">
+            <i data-lucide="message-square" class="w-5 h-5"></i> AI Concierge
+            <span class="absolute right-3 px-1.5 py-0.5 bg-coral text-navy text-[10px] font-bold rounded-full">Globi</span>
+          </button>
+          <button onclick="switchTab('profile')" id="tab-btn-profile" class="tab-btn w-full px-4 py-3 rounded-xl flex items-center gap-3.5 text-sm font-medium transition-all text-slate-400 hover:text-white hover:bg-white/5 border-l-4 border-transparent">
+            <i data-lucide="user" class="w-5 h-5"></i> Profile
+          </button>
+        </nav>
+
+        <!-- Quick Info Widget in Sidebar -->
+        <div class="p-4 m-4 bg-white/5 border border-white/10 rounded-2xl text-xs text-slate-300">
+          <div class="flex items-center gap-2 text-teal-400 font-semibold mb-1">
+            <i data-lucide="shield-check" class="w-4 h-4"></i> Safe Connection
+          </div>
+          <p class="leading-relaxed text-slate-400">Offline syncing enabled. Data encrypted with AES-256.</p>
+        </div>
+
+        <!-- Footer / Logout in Sidebar -->
+        <div class="p-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-teal-500 text-navy font-bold flex items-center justify-center text-[10px]">KM</div>
+            <span class="font-medium truncate max-w-[100px]">K. Deshmukh</span>
+          </div>
+          <button onclick="logout()" class="p-2 hover:text-white hover:bg-white/10 rounded-lg transition-colors cursor-pointer" title="Log Out">
+            <i data-lucide="log-out" class="w-4.5 h-4.5"></i>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main Application Shell Window -->
+      <main class="flex-1 flex flex-col min-h-0 overflow-y-auto pb-24 md:pb-0">
+        <!-- Main Top Bar -->
+        <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between shrink-0">
+          <div>
+            <h2 id="topbar-title" class="font-display text-xl font-bold text-slate-900">Dashboard</h2>
+            <p id="topbar-subtitle" class="text-xs text-slate-500">Welcome back, Kanishka! Here is your travel snapshot.</p>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <!-- Sync Indicator -->
+            <div class="flex items-center gap-1.5 text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full text-xs font-semibold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              Synced
+            </div>
+
+            <!-- Notification Icon -->
+            <button class="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-xl transition-all cursor-pointer relative">
+              <i data-lucide="bell" class="w-5 h-5"></i>
+              <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-coral rounded-full"></span>
+            </button>
+            
+            <!-- Quick Weather widget -->
+            <div class="hidden sm:flex items-center gap-2 text-xs text-slate-600 bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200">
+              <i data-lucide="cloud-sun" class="w-4.5 h-4.5 text-amber-500"></i>
+              <span>Kyoto: 24°C / Rain 10%</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Dynamic Content Area -->
+        <div class="p-6 md:p-8 flex-1">
+          <!-- 1. DASHBOARD TAB -->
+          <div id="tab-content-dashboard" class="tab-pane animate-fade-in flex flex-col gap-6">
+            <!-- Primary Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <!-- Column 1 & 2: Big Upcoming Trip Card & Map -->
+              <div class="lg:col-span-2 flex flex-col gap-6">
+                <!-- Upcoming Trip Card -->
+                <div class="relative bg-gradient-to-r from-navy to-navy-light text-white p-6 rounded-3xl overflow-hidden shadow-lg border border-white/5">
+                  <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=600');"></div>
+                  <!-- Content -->
+                  <div class="relative z-10 flex flex-col justify-between h-full min-h-[180px]">
+                    <div class="flex justify-between items-start">
+                      <div>
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 rounded-full text-[11px] font-bold text-teal-300 uppercase tracking-widest mb-3">
+                          <i data-lucide="calendar" class="w-3.5 h-3.5"></i> Next Adventure
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-white mb-1">Explore Kyoto & Osaka</h3>
+                        <p class="text-xs text-slate-300 flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-coral"></i> Japan — July 10, 2026 to July 18, 2026</p>
+                      </div>
+                      <div class="text-right">
+                        <div class="text-3xl font-extrabold text-teal-400">12</div>
+                        <div class="text-[10px] text-slate-400 uppercase font-semibold tracking-wider">Days Left</div>
+                      </div>
+                    </div>
+
+                    <div class="mt-8">
+                      <div class="flex justify-between text-xs text-slate-300 mb-1.5">
+                        <span>Trip Preparation Progress</span>
+                        <span>75% Complete</span>
+                      </div>
+                      <div class="w-full bg-white/10 h-2.5 rounded-full overflow-hidden">
+                        <div class="bg-gradient-to-r from-teal-400 to-emerald-400 h-full rounded-full" style="width: 75%"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Visited Places Map -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-2">
+                      <i data-lucide="map" class="text-teal-600 w-5 h-5"></i>
+                      <h4 class="font-display font-bold text-slate-900">Visited Places Map</h4>
+                    </div>
+                    <span class="text-xs text-teal-600 bg-teal-50 px-2.5 py-1 rounded-full font-semibold">5 Countries Saved</span>
+                  </div>
+                  <!-- Map Container representation -->
+                  <div class="relative bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl h-64 overflow-hidden flex flex-col items-center justify-center text-center p-6 group">
+                    <!-- Pure CSS stylized world graphic in background -->
+                    <div class="absolute inset-0 opacity-10 flex items-center justify-center text-8xl pointer-events-none select-none">🗺️</div>
+                    
+                    <!-- Glowing pin drops -->
+                    <div class="absolute top-[35%] left-[25%] animate-bounce text-coral" title="Kyoto, Japan"><i data-lucide="map-pin" class="w-6 h-6 fill-current"></i></div>
+                    <div class="absolute top-[48%] left-[45%] text-teal-500 animate-pulse" title="Rome, Italy"><i data-lucide="map-pin" class="w-6 h-6 fill-current"></i></div>
+                    <div class="absolute top-[60%] left-[70%] text-indigo-500" title="Sydney, Australia"><i data-lucide="map-pin" class="w-6 h-6 fill-current"></i></div>
+
+                    <div class="relative z-10 max-w-sm">
+                      <h5 class="font-bold text-slate-800 text-sm mb-1">Pins Dropped Internationally</h5>
+                      <p class="text-xs text-slate-500 mb-4">Zoom, drag, and click map pins to explore your recorded travel memories and logs.</p>
+                      <button onclick="alert('Map coordinates successfully loaded. In the future version, Google Maps SDK will be integrated here.')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl border border-slate-200 transition-all cursor-pointer">
+                        Expand Map View
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Column 3: Budget Snapshot & Persona -->
+              <div class="flex flex-col gap-6">
+                <!-- Budget Snapshot -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                  <div class="flex items-center gap-2 mb-4">
+                    <i data-lucide="wallet" class="text-emerald-600 w-5 h-5"></i>
+                    <h4 class="font-display font-bold text-slate-900">Budget Snapshot</h4>
+                  </div>
+                  <div class="text-center py-4">
+                    <div class="relative inline-flex items-center justify-center">
+                      <!-- Simplified circle progress bar in pure Tailwind -->
+                      <div class="w-32 h-32 rounded-full border-8 border-slate-100 flex flex-col items-center justify-center">
+                        <span class="text-2xl font-black text-slate-800">$1,250</span>
+                        <span class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Spent of $2,000</span>
+                      </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 mt-6 text-left border-t border-slate-100 pt-4">
+                      <div>
+                        <div class="text-xs text-slate-400">Total Budget</div>
+                        <div class="text-sm font-bold text-slate-800">$2,000.00</div>
+                      </div>
+                      <div>
+                        <div class="text-xs text-slate-400">Daily Average</div>
+                        <div class="text-sm font-bold text-teal-600">$125.00/day</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Travel Persona Badge -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm flex-1 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center gap-2 mb-3">
+                      <i data-lucide="award" class="text-coral w-5 h-5"></i>
+                      <h4 class="font-display font-bold text-slate-900">Travel Persona</h4>
+                    </div>
+                    <div class="bg-coral/10 text-coral-dark text-xs font-extrabold uppercase px-3 py-1.5 rounded-xl w-fit mb-3 tracking-wider">
+                      💎 Elite Culture Seeker
+                    </div>
+                    <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                      Based on past trips to Rome and Kyoto, you heavily prioritize UNESCO world heritage sights, localized dining experiences, and historical guides.
+                    </p>
+                  </div>
+                  <div class="border-t border-slate-100 pt-3 flex justify-between items-center text-xs">
+                    <span class="text-slate-400">Next Badge Unlock:</span>
+                    <span class="font-bold text-slate-700">Adrenaline Nomad (+150 XP)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Actions Container -->
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+              <h4 class="font-display font-bold text-slate-900 mb-4">Quick Actions</h4>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <button onclick="switchTab('trips')" class="p-4 bg-teal-50 hover:bg-teal-100 border border-teal-200/50 rounded-2xl text-left transition-all cursor-pointer">
+                  <div class="p-2 bg-teal-500 text-white rounded-xl w-fit mb-3 shadow-md shadow-teal-500/10">
+                    <i data-lucide="plus-circle" class="w-5 h-5"></i>
+                  </div>
+                  <div class="font-bold text-slate-800 text-sm">Create New Plan</div>
+                  <div class="text-xs text-slate-500 mt-0.5">Let AI build an itinerary</div>
+                </button>
+
+                <button onclick="switchTab('explore')" class="p-4 bg-coral/5 hover:bg-coral/10 border border-coral/20 rounded-2xl text-left transition-all cursor-pointer">
+                  <div class="p-2 bg-coral text-white rounded-xl w-fit mb-3 shadow-md shadow-coral/10">
+                    <i data-lucide="receipt" class="w-5 h-5"></i>
+                  </div>
+                  <div class="font-bold text-slate-800 text-sm">Add New Expense</div>
+                  <div class="text-xs text-slate-500 mt-0.5">Log custom cost category</div>
+                </button>
+
+                <button onclick="switchTab('concierge')" class="p-4 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200/50 rounded-2xl text-left transition-all cursor-pointer">
+                  <div class="p-2 bg-indigo-500 text-white rounded-xl w-fit mb-3 shadow-md shadow-indigo-500/10">
+                    <i data-lucide="message-square" class="w-5 h-5"></i>
+                  </div>
+                  <div class="font-bold text-slate-800 text-sm">Ask Chat Globi</div>
+                  <div class="text-xs text-slate-500 mt-0.5">Instant localized travel translation</div>
+                </button>
+
+                <button onclick="alert('Destination settings successfully accessed. In future versions, customize flight search options.')" class="p-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-2xl text-left transition-all cursor-pointer">
+                  <div class="p-2 bg-slate-600 text-white rounded-xl w-fit mb-3 shadow-md shadow-slate-600/10">
+                    <i data-lucide="settings" class="w-5 h-5"></i>
+                  </div>
+                  <div class="font-bold text-slate-800 text-sm">Configure Trips</div>
+                  <div class="text-xs text-slate-500 mt-0.5">Toggle home preferences</div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. TRIPS TAB -->
+          <div id="tab-content-trips" class="tab-pane animate-fade-in flex flex-col gap-6 view-hidden">
+            <!-- AI Suggested Trip -->
+            <div class="bg-gradient-to-r from-teal-900 to-navy text-white p-6 rounded-3xl relative overflow-hidden shadow-lg border border-white/5">
+              <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                  <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 rounded-full text-[11px] font-bold text-teal-300 uppercase mb-3">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5 animate-pulse"></i> Personalized Suggestion
+                  </div>
+                  <h3 class="font-display text-2xl font-bold mb-1">Based on past travel: Reykjavik, Iceland</h3>
+                  <p class="text-xs text-slate-300">5 Days explorer itinerary: Volcanic vents, geothermal lagoons, and glacier hikes.</p>
+                </div>
+                <button onclick="alert('Creating 5-day Reykjavik itinerary using WanderWise AI... Ready shortly!')" class="px-5 py-2.5 bg-teal-500 hover:bg-teal-400 text-navy font-bold rounded-xl text-xs transition-all shadow-lg cursor-pointer">
+                  Build Trip Itinerary
+                </button>
+              </div>
+            </div>
+
+            <!-- Main Sections Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <!-- Destination Library -->
+              <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col">
+                <div class="flex items-center gap-2 mb-4 justify-between">
+                  <div class="flex items-center gap-2">
+                    <i data-lucide="bookmark" class="text-teal-600 w-5 h-5"></i>
+                    <h4 class="font-display font-bold text-slate-900">Destination Library</h4>
+                  </div>
+                  <span class="text-xs text-slate-400">3 Saved</span>
+                </div>
+
+                <!-- Dashboard Destination Boxes (Dashed placeholder boxes) -->
+                <div class="flex flex-col gap-3 flex-1">
+                  <div class="flex items-center justify-between p-4 border-2 border-dashed border-slate-200 rounded-2xl hover:border-teal-500/50 transition-all cursor-pointer">
+                    <div class="flex items-center gap-3">
+                      <div class="p-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-500"><i data-lucide="image" class="w-5 h-5"></i></div>
+                      <div>
+                        <div class="text-sm font-bold text-slate-800">Paris, France</div>
+                        <div class="text-xs text-slate-400">Europe — Curated Cafes & Sights</div>
+                      </div>
+                    </div>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+                  </div>
+
+                  <div class="flex items-center justify-between p-4 border-2 border-dashed border-slate-200 rounded-2xl hover:border-teal-500/50 transition-all cursor-pointer">
+                    <div class="flex items-center gap-3">
+                      <div class="p-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-500"><i data-lucide="image" class="w-5 h-5"></i></div>
+                      <div>
+                        <div class="text-sm font-bold text-slate-800">Sydney, Australia</div>
+                        <div class="text-xs text-slate-400">Oceania — Beaches & Opera House</div>
+                      </div>
+                    </div>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+                  </div>
+
+                  <div class="flex items-center justify-between p-4 border-2 border-dashed border-slate-200 rounded-2xl hover:border-teal-500/50 transition-all cursor-pointer">
+                    <div class="flex items-center gap-3">
+                      <div class="p-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-500"><i data-lucide="image" class="w-5 h-5"></i></div>
+                      <div>
+                        <div class="text-sm font-bold text-slate-800">Cairo, Egypt</div>
+                        <div class="text-xs text-slate-400">Africa — Giza Pyramids Guided</div>
+                      </div>
+                    </div>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Trip History -->
+              <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col">
+                <div class="flex items-center gap-2 mb-4">
+                  <i data-lucide="history" class="text-indigo-600 w-5 h-5"></i>
+                  <h4 class="font-display font-bold text-slate-900">Trip History</h4>
+                </div>
+
+                <div class="flex flex-col gap-3 flex-1 justify-center">
+                  <div class="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                    <div class="flex items-center gap-3">
+                      <div class="p-2 bg-indigo-100 text-indigo-700 rounded-xl"><i data-lucide="compass" class="w-5 h-5"></i></div>
+                      <div>
+                        <div class="text-sm font-bold text-slate-800">Rome, Italy Tour</div>
+                        <div class="text-xs text-slate-500">March 2025 • 6 Days • $1,450 Spent</div>
+                      </div>
+                    </div>
+                    <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">Completed</span>
+                  </div>
+
+                  <div class="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                    <div class="flex items-center gap-3">
+                      <div class="p-2 bg-indigo-100 text-indigo-700 rounded-xl"><i data-lucide="compass" class="w-5 h-5"></i></div>
+                      <div>
+                        <div class="text-sm font-bold text-slate-800">Barcelona, Spain Leisure</div>
+                        <div class="text-xs text-slate-500">November 2024 • 5 Days • $1,200 Spent</div>
+                      </div>
+                    </div>
+                    <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">Completed</span>
+                  </div>
+
+                  <div class="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                    <div class="flex items-center gap-3">
+                      <div class="p-2 bg-indigo-100 text-indigo-700 rounded-xl"><i data-lucide="compass" class="w-5 h-5"></i></div>
+                      <div>
+                        <div class="text-sm font-bold text-slate-800">London, United Kingdom Trip</div>
+                        <div class="text-xs text-slate-500">May 2024 • 4 Days • $980 Spent</div>
+                      </div>
+                    </div>
+                    <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">Completed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. EXPLORE TAB -->
+          <div id="tab-content-explore" class="tab-pane animate-fade-in flex flex-col gap-6 view-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <!-- Left Big Side: Today's Itinerary & Search -->
+              <div class="lg:col-span-2 flex flex-col gap-6">
+                <!-- Places & Events Search -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                  <h4 class="font-display font-bold text-slate-900 mb-3">Places & Events Search</h4>
+                  <div class="flex flex-col sm:flex-row gap-3 mb-4">
+                    <div class="flex-1 relative">
+                      <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"></i>
+                      <input type="text" id="explore-search-input" placeholder="Search cafes, gardens, landmarks, transport in Kyoto..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 text-sm">
+                    </div>
+                    <button onclick="runExploreSearch()" class="px-5 py-2.5 bg-teal-500 hover:bg-teal-400 text-navy font-bold rounded-xl text-sm transition-all shadow-md cursor-pointer flex items-center justify-center gap-2">
+                      <i data-lucide="search" class="w-4 h-4"></i> Search
+                    </button>
+                  </div>
+                  
+                  <!-- Filter Pills -->
+                  <div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+                    <button class="px-3 py-1 bg-teal-500 text-navy font-semibold text-xs rounded-full">All Items</button>
+                    <button class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold text-xs rounded-full">Food & Dining</button>
+                    <button class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold text-xs rounded-full">Historic Sights</button>
+                    <button class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold text-xs rounded-full">Nature & Outdoors</button>
+                  </div>
+
+                  <!-- Mock Results list -->
+                  <div id="explore-results-container" class="mt-4 flex flex-col gap-2.5">
+                    <!-- Result item 1 -->
+                    <div class="flex items-center justify-between p-3.5 bg-slate-50 rounded-2xl hover:bg-slate-100 transition-colors border border-slate-200/50">
+                      <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center font-bold text-sm">🍁</div>
+                        <div>
+                          <div class="text-sm font-bold text-slate-800">Fushimi Inari-taisha Shrine</div>
+                          <div class="text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-current"></i> 4.9 (450 reviews) • Shinto Shrine • Kyoto, Japan</div>
+                        </div>
+                      </div>
+                      <button onclick="alert('Fushimi Inari Shrine added to your trip bucket list!')" class="p-2 hover:bg-white rounded-lg text-teal-600 transition-all border border-transparent hover:border-slate-200"><i data-lucide="plus" class="w-5 h-5"></i></button>
+                    </div>
+
+                    <!-- Result item 2 -->
+                    <div class="flex items-center justify-between p-3.5 bg-slate-50 rounded-2xl hover:bg-slate-100 transition-colors border border-slate-200/50">
+                      <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-sm">⛩️</div>
+                        <div>
+                          <div class="text-sm font-bold text-slate-800">Kinkaku-ji (Golden Pavilion)</div>
+                          <div class="text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-current"></i> 4.8 (380 reviews) • Zen Buddhist Temple • Kyoto, Japan</div>
+                        </div>
+                      </div>
+                      <button onclick="alert('Kinkaku-ji Golden Pavilion added to your trip bucket list!')" class="p-2 hover:bg-white rounded-lg text-teal-600 transition-all border border-transparent hover:border-slate-200"><i data-lucide="plus" class="w-5 h-5"></i></button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Today's Itinerary Slots -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-2">
+                      <i data-lucide="clock" class="text-teal-600 w-5 h-5"></i>
+                      <h4 class="font-display font-bold text-slate-900">Today's Itinerary Slots</h4>
+                    </div>
+                    <span class="text-xs text-slate-400">Day 1 of Kyoto Itinerary</span>
+                  </div>
+
+                  <!-- Timeline vertical slots -->
+                  <div class="relative pl-6 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200 flex flex-col gap-6">
+                    <!-- Slot 1 -->
+                    <div class="relative">
+                      <div class="absolute -left-[20px] top-1 w-4 h-4 bg-teal-500 rounded-full border-4 border-white shadow"></div>
+                      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <div>
+                          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">09:00 AM — Breakfast</span>
+                          <h5 class="text-sm font-bold text-slate-800">Traditional Kyoto Coffee House</h5>
+                        </div>
+                        <span class="text-[11px] font-semibold text-teal-600 bg-teal-50 px-2.5 py-1 rounded-full border border-teal-100">Confirmed Booking</span>
+                      </div>
+                    </div>
+
+                    <!-- Slot 2 -->
+                    <div class="relative">
+                      <div class="absolute -left-[20px] top-1 w-4 h-4 bg-teal-500 rounded-full border-4 border-white shadow"></div>
+                      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <div>
+                          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">10:30 AM — Sightseeing</span>
+                          <h5 class="text-sm font-bold text-slate-800">Gion Neighborhood Guided Walk</h5>
+                        </div>
+                        <span class="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">Pending Weather</span>
+                      </div>
+                    </div>
+
+                    <!-- Slot 3 -->
+                    <div class="relative">
+                      <div class="absolute -left-[20px] top-1 w-4 h-4 bg-coral rounded-full border-4 border-white shadow"></div>
+                      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <div>
+                          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">01:00 PM — Dining</span>
+                          <h5 class="text-sm font-bold text-slate-800">Nishiki Market Culinary Tour</h5>
+                        </div>
+                        <span class="text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">Reservation Paid</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Side Column: Budget ring & Quick Facts -->
+              <div class="flex flex-col gap-6">
+                <!-- Budget Ring Representation -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                  <div class="flex items-center gap-2 mb-4">
+                    <i data-lucide="donut" class="text-teal-600 w-5 h-5"></i>
+                    <h4 class="font-display font-bold text-slate-900">Budget Ring Breakdown</h4>
+                  </div>
+                  <!-- Visual breakdown representing budget ring -->
+                  <div class="flex flex-col gap-3">
+                    <!-- Segment 1: Lodging -->
+                    <div>
+                      <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                        <span>Lodging (Hotel, BnB)</span>
+                        <span>45% ($562.50)</span>
+                      </div>
+                      <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                        <div class="bg-indigo-500 h-full rounded-full" style="width: 45%"></div>
+                      </div>
+                    </div>
+
+                    <!-- Segment 2: Food & Beverage -->
+                    <div>
+                      <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                        <span>Food & Dining</span>
+                        <span>25% ($312.50)</span>
+                      </div>
+                      <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                        <div class="bg-teal-500 h-full rounded-full" style="width: 25%"></div>
+                      </div>
+                    </div>
+
+                    <!-- Segment 3: Transport -->
+                    <div>
+                      <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                        <span>Transport (Train pass, Taxi)</span>
+                        <span>18% ($225.00)</span>
+                      </div>
+                      <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                        <div class="bg-coral h-full rounded-full" style="width: 18%"></div>
+                      </div>
+                    </div>
+
+                    <!-- Segment 4: Shopping / Souvenirs -->
+                    <div>
+                      <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                        <span>Shopping & Sights</span>
+                        <span>12% ($150.00)</span>
+                      </div>
+                      <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                        <div class="bg-amber-400 h-full rounded-full" style="width: 12%"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Quick Facts Panel -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                  <div class="flex items-center gap-2 mb-3">
+                    <i data-lucide="info" class="text-coral w-5 h-5"></i>
+                    <h4 class="font-display font-bold text-slate-900">Kyoto Quick Facts</h4>
+                  </div>
+                  <ul class="flex flex-col gap-3 text-xs text-slate-600 leading-relaxed">
+                    <li class="flex items-start gap-2 border-b border-slate-100 pb-2.5">
+                      <span class="p-1 bg-slate-100 rounded-lg text-slate-800 font-bold">💱</span>
+                      <div>
+                        <strong class="text-slate-800">Currency Conversion:</strong>
+                        <p class="text-slate-500">1 USD = 156.40 JPY (Latest rate sync 4m ago)</p>
+                      </div>
+                    </li>
+                    <li class="flex items-start gap-2 border-b border-slate-100 pb-2.5">
+                      <span class="p-1 bg-slate-100 rounded-lg text-slate-800 font-bold">🔌</span>
+                      <div>
+                        <strong class="text-slate-800">Plugs & Volts:</strong>
+                        <p class="text-slate-500">Type A/B plugs. 100 Volts (50/60 Hz frequency)</p>
+                      </div>
+                    </li>
+                    <li class="flex items-start gap-2 border-b border-slate-100 pb-2.5">
+                      <span class="p-1 bg-slate-100 rounded-lg text-slate-800 font-bold">🚨</span>
+                      <div>
+                        <strong class="text-slate-800">Emergency Contact:</strong>
+                        <p class="text-slate-500">Dial 110 for police assistance / 119 for fire/ambulance</p>
+                      </div>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="p-1 bg-slate-100 rounded-lg text-slate-800 font-bold">🍱</span>
+                      <div>
+                        <strong class="text-slate-800">Tipping Rules:</strong>
+                        <p class="text-slate-500">No tipping required or customary anywhere in Japan.</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. AI CONCIERGE (GLOBI CHAT) TAB -->
+          <div id="tab-content-concierge" class="tab-pane animate-fade-in flex flex-col gap-6 view-hidden">
+            <div class="bg-gradient-to-r from-navy to-navy-light text-white p-6 rounded-3xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4 border border-white/5">
+              <div class="flex items-center gap-4">
+                <div class="p-3 bg-teal-500/10 border border-teal-500/20 text-teal-400 rounded-full text-3xl animate-bounce">
+                  🌍
+                </div>
+                <div>
+                  <h3 class="font-display text-xl font-bold">Meet Globi Concierge</h3>
+                  <p class="text-xs text-slate-300">Your AI pocket assistant. Translate, find local spots, or get travel tip guidance.</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 text-xs font-semibold text-teal-400 bg-teal-500/10 px-3 py-1.5 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-teal-400 animate-ping"></span>
+                Globi Online
+              </div>
+            </div>
+
+            <!-- Interactive Chat Box Interface -->
+            <div class="bg-white rounded-3xl border border-slate-200 shadow-md flex flex-col h-[500px] overflow-hidden">
+              <!-- Chat Header -->
+              <div class="px-6 py-4 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-teal-500 text-navy font-bold flex items-center justify-center text-lg shadow-inner">
+                    🌍
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-slate-800 text-sm">Globi travel assistant</h4>
+                    <span class="text-[10px] text-teal-600 font-bold">Ready to translate & explore</span>
+                  </div>
+                </div>
+                <button onclick="resetGlobiChat()" class="p-2 hover:bg-slate-200 text-slate-500 rounded-xl transition-all" title="Reset Chat">
+                  <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+              <!-- Chat Message Bubble Box -->
+              <div id="globi-chat-box" class="flex-1 p-6 overflow-y-auto flex flex-col gap-4 bg-slate-50">
+                <!-- Globi message -->
+                <div class="flex gap-3 max-w-[80%] animate-fade-in">
+                  <div class="w-8 h-8 rounded-full bg-teal-500 text-navy font-bold flex items-center justify-center text-xs shadow-inner shrink-0">
+                    🌍
+                  </div>
+                  <div class="bg-white p-3.5 rounded-2xl shadow-sm text-slate-700 text-xs leading-relaxed border border-slate-100">
+                    Konnichiwa! I'm Globi, your 24/7 AI travel concierge! ✈️ I can translate phrases, provide local rules, find hidden restaurants, or detail safety tips. Ask me anything or select a prompt below!
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick suggestion query pills -->
+              <div class="px-6 py-3 bg-white border-t border-slate-100 flex gap-2 overflow-x-auto no-scrollbar shrink-0">
+                <button onclick="triggerGlobiPrompt('translate')" class="px-3.5 py-2 bg-slate-100 hover:bg-teal-50 hover:text-teal-600 transition-colors text-slate-600 rounded-xl text-xs font-semibold shrink-0 cursor-pointer">
+                  🇯🇵 Translate "Where is the station?"
+                </button>
+                <button onclick="triggerGlobiPrompt('tipping')" class="px-3.5 py-2 bg-slate-100 hover:bg-teal-50 hover:text-teal-600 transition-colors text-slate-600 rounded-xl text-xs font-semibold shrink-0 cursor-pointer">
+                  💡 Local tipping rules in Kyoto
+                </button>
+                <button onclick="triggerGlobiPrompt('cafes')" class="px-3.5 py-2 bg-slate-100 hover:bg-teal-50 hover:text-teal-600 transition-colors text-slate-600 rounded-xl text-xs font-semibold shrink-0 cursor-pointer">
+                  ☕ Recommend quiet cafes to study
+                </button>
+              </div>
+
+              <!-- Input text box footer -->
+              <div class="p-4 bg-white border-t border-slate-200 flex gap-3 shrink-0">
+                <input type="text" id="globi-chat-input" placeholder="Type a message to Globi..." class="flex-1 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 text-xs" onkeypress="handleGlobiKeyPress(event)">
+                <button onclick="sendGlobiUserMessage()" class="px-4 py-2.5 bg-teal-500 hover:bg-teal-400 text-navy font-bold rounded-xl text-xs shadow-md transition-all cursor-pointer flex items-center justify-center gap-1.5">
+                  Send <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. PROFILE TAB -->
+          <div id="tab-content-profile" class="tab-pane animate-fade-in flex flex-col gap-6 view-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <!-- Left Big Profile card -->
+              <div class="lg:col-span-2 bg-white p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div class="flex flex-col sm:flex-row items-center gap-5 border-b border-slate-100 pb-6 mb-6">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-teal-500 via-emerald-400 to-indigo-600 flex items-center justify-center text-3xl text-white font-extrabold shadow-lg shadow-teal-500/10">
+                      <span id="profile-avatar-initials">KD</span>
+                    </div>
+                    <div class="text-center sm:text-left">
+                      <h3 id="profile-fullname" class="font-display text-2xl font-black text-slate-900">Kanishka Deshmukh</h3>
+                      <p id="profile-email" class="text-xs text-slate-400 mt-0.5">kanishka.deshmukh2007@gmail.com</p>
+                      <div class="flex items-center gap-2 mt-3 justify-center sm:justify-start">
+                        <span class="px-3 py-1 bg-teal-50 border border-teal-100 text-teal-600 text-[10px] font-extrabold uppercase rounded-full tracking-wider">
+                          Elite Explorer
+                        </span>
+                        <span class="px-3 py-1 bg-indigo-50 border border-indigo-100 text-indigo-600 text-[10px] font-extrabold uppercase rounded-full tracking-wider">
+                          Pro Member
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Statistics -->
+                  <h4 class="font-display font-bold text-slate-900 mb-4">Travel Statistics</h4>
+                  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl text-center">
+                      <div class="text-2xl font-black text-slate-800">5</div>
+                      <div class="text-[10px] text-slate-400 uppercase font-semibold mt-1">Countries</div>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl text-center">
+                      <div class="text-2xl font-black text-slate-800">12</div>
+                      <div class="text-[10px] text-slate-400 uppercase font-semibold mt-1">Cities Visited</div>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl text-center">
+                      <div class="text-2xl font-black text-slate-800">32</div>
+                      <div class="text-[10px] text-slate-400 uppercase font-semibold mt-1">Travel Days</div>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl text-center">
+                      <div class="text-2xl font-black text-teal-600">7,400</div>
+                      <div class="text-[10px] text-slate-400 uppercase font-semibold mt-1">Eco-Offset XP</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Log out action -->
+                <div class="flex justify-between items-center border-t border-slate-100 pt-6">
+                  <span class="text-xs text-slate-400">Account session valid for 30 days.</span>
+                  <button onclick="logout()" class="px-5 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-600 font-bold rounded-xl text-xs transition-all border border-rose-200/50 flex items-center gap-1.5 cursor-pointer">
+                    <i data-lucide="log-out" class="w-4 h-4"></i> Log Out
+                  </button>
+                </div>
+              </div>
+
+              <!-- Right Account parameters card -->
+              <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col">
+                <h4 class="font-display font-bold text-slate-900 mb-4">WanderWise Plan Details</h4>
+                <div class="bg-gradient-to-b from-navy to-navy-light text-white p-5 rounded-2xl mb-6 border border-white/5 shadow-md">
+                  <div class="flex justify-between items-start mb-3">
+                    <div>
+                      <div class="text-xs text-slate-300">Current active plan</div>
+                      <h5 class="text-lg font-bold text-teal-400">Explorer Membership</h5>
+                    </div>
+                    <span class="px-2 py-0.5 bg-teal-500 text-navy text-[10px] font-black rounded-full uppercase">Active</span>
+                  </div>
+                  <p class="text-[11px] text-slate-300 mb-4">Provides 10 high-fidelity AI itineraries every month and premium country guides.</p>
+                  <div class="flex justify-between text-xs border-t border-white/10 pt-3">
+                    <span>Renews: July 20, 2026</span>
+                    <span class="font-bold text-teal-400">$9.00/mo</span>
+                  </div>
+                </div>
+
+                <!-- Account settings checklist list -->
+                <div class="flex-1 flex flex-col justify-between">
+                  <div class="flex flex-col gap-2.5">
+                    <div class="flex items-center justify-between p-3.5 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer border border-slate-200/50">
+                      <span class="text-xs font-semibold text-slate-700">Account Security</span>
+                      <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+                    </div>
+                    <div class="flex items-center justify-between p-3.5 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer border border-slate-200/50">
+                      <span class="text-xs font-semibold text-slate-700">Currency & Metrics (USD, Miles)</span>
+                      <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+                    </div>
+                    <div class="flex items-center justify-between p-3.5 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer border border-slate-200/50">
+                      <span class="text-xs font-semibold text-slate-700">Emergency Notifications</span>
+                      <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+                    </div>
+                  </div>
+                  <div class="text-center text-[10px] text-slate-400 mt-6 uppercase tracking-wider font-bold">WanderWise Client v2.0.4</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Bottom Tab Bar (Mobile only, hidden on desktop screens) -->
+      <nav class="md:hidden fixed bottom-0 left-0 w-full bg-navy text-slate-100 border-t border-navy-light flex justify-around py-3.5 z-40 shadow-xl">
+        <button onclick="switchTab('dashboard')" id="mobile-tab-btn-dashboard" class="mobile-tab-btn flex flex-col items-center gap-1 text-teal-400">
+          <i data-lucide="layout-dashboard" class="w-5.5 h-5.5"></i>
+          <span class="text-[10px] font-bold">Dashboard</span>
+        </button>
+        <button onclick="switchTab('trips')" id="mobile-tab-btn-trips" class="mobile-tab-btn flex flex-col items-center gap-1 text-slate-400">
+          <i data-lucide="briefcase" class="w-5.5 h-5.5"></i>
+          <span class="text-[10px] font-bold">Trips</span>
+        </button>
+        <button onclick="switchTab('explore')" id="mobile-tab-btn-explore" class="mobile-tab-btn flex flex-col items-center gap-1 text-slate-400">
+          <i data-lucide="compass" class="w-5.5 h-5.5"></i>
+          <span class="text-[10px] font-bold">Explore</span>
+        </button>
+        <button onclick="switchTab('concierge')" id="mobile-tab-btn-concierge" class="mobile-tab-btn flex flex-col items-center gap-1 text-slate-400">
+          <i data-lucide="message-square" class="w-5.5 h-5.5"></i>
+          <span class="text-[10px] font-bold">Concierge</span>
+        </button>
+        <button onclick="switchTab('profile')" id="mobile-tab-btn-profile" class="mobile-tab-btn flex flex-col items-center gap-1 text-slate-400">
+          <i data-lucide="user" class="w-5.5 h-5.5"></i>
+          <span class="text-[10px] font-bold">Profile</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Watch Demo Modal Video Representation -->
+    <div id="demo-modal" class="fixed inset-0 bg-navy/80 backdrop-blur-md flex items-center justify-center z-55 opacity-0 pointer-events-none transition-all duration-300">
+      <div class="bg-navy-light p-6 rounded-3xl border border-white/15 max-w-2xl w-full mx-4 shadow-2xl relative">
+        <button onclick="closeDemoModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1.5 hover:bg-white/5 rounded-xl transition-all cursor-pointer">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <h4 class="font-display text-xl font-bold text-white mb-2 flex items-center gap-2">
+          <i data-lucide="play-circle" class="text-teal-400"></i> WanderWise Demo Experience
+        </h4>
+        <p class="text-xs text-slate-400 mb-4">See how WanderWise automates customized itinerary scheduling, smart budgeting, and conversions.</p>
+        
+        <!-- Video Placeholder Graphic -->
+        <div class="relative bg-navy-dark border-2 border-dashed border-white/10 rounded-2xl h-64 overflow-hidden flex flex-col items-center justify-center text-center p-6 shadow-inner">
+          <div class="p-4 bg-teal-500 text-navy rounded-full mb-3 animate-pulse">
+            <i data-lucide="play" class="w-8 h-8 fill-current"></i>
+          </div>
+          <h5 class="text-sm font-bold text-white">Itinerary AI Loading Demonstration</h5>
+          <p class="text-xs text-slate-500 max-w-sm mt-1">In production, this displays a polished product tour video walk-through demonstrating travel planning features.</p>
+        </div>
+
+        <div class="flex justify-end gap-3 mt-6">
+          <button onclick="closeDemoModal()" class="px-4 py-2 bg-white/5 hover:bg-white/10 text-white rounded-xl text-xs font-semibold cursor-pointer">Close</button>
+          <button onclick="closeDemoModal(); enterApp();" class="px-4 py-2 bg-teal-500 hover:bg-teal-400 text-navy rounded-xl text-xs font-bold cursor-pointer">Start Planning</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VANILLA JAVASCRIPT APP WORKFLOW -->
+    <script>
+      // 1. Initial State Initialization
+      document.addEventListener("DOMContentLoaded", function() {
+        lucide.createIcons();
+        setupHamburger();
+        setupHeaderScroll();
+        setupScrollAnimation();
+        
+        // If a profile exists, sync and update landing button text
+        if (localStorage.getItem("userProfile")) {
+          syncUserProfileUI();
+          
+          const headerSignin = document.getElementById("navbar-signin-btn");
+          const headerStart = document.getElementById("navbar-getstarted-btn");
+          if (headerSignin) headerSignin.innerText = "Dashboard";
+          if (headerStart) headerStart.innerText = "Go to App";
+        }
+      });
+
+      // 2. Sticky Header Transparent to Backdrop Scroll transition
+      function setupHeaderScroll() {
+        const header = document.getElementById("landing-header");
+        window.addEventListener("scroll", function() {
+          if (window.scrollY > 50) {
+            header.classList.add("bg-navy-dark/95", "py-3", "shadow-lg");
+            header.classList.remove("bg-navy/80", "py-4");
+          } else {
+            header.classList.remove("bg-navy-dark/95", "py-3", "shadow-lg");
+            header.classList.add("bg-navy/80", "py-4");
+          }
+        });
+      }
+
+      // 3. Hamburger Menu trigger
+      function setupHamburger() {
+        const btn = document.getElementById("mobile-menu-btn");
+        const menu = document.getElementById("mobile-menu");
+        btn.addEventListener("click", function() {
+          menu.classList.toggle("hidden");
+        });
+      }
+
+      function toggleMobileMenu() {
+        const menu = document.getElementById("mobile-menu");
+        menu.classList.add("hidden");
+      }
+
+      // 4. View Switching Transitions & Auth/Onboarding Logic
+      let onboardingData = {
+        name: "",
+        dob: "",
+        homeCity: "",
+        currency: "INR",
+        travelStyle: "",
+        tripDuration: "",
+        budgetTier: "",
+        accommodation: [],
+        companions: "",
+        foodPrefs: [],
+        interests: [],
+        languages: [],
+        mobility: "Moderate"
+      };
+
+      let currentOnboardingStep = 1;
+
+      // Toast Notification Helper
+      function showToast(message, type = "error") {
+        const toast = document.getElementById("toast");
+        const toastMsg = document.getElementById("toast-message");
+        
+        toastMsg.innerText = message;
+        
+        // Set styling based on type
+        if (type === "success") {
+          toast.classList.remove("bg-rose-500");
+          toast.classList.add("bg-emerald-500");
+        } else {
+          toast.classList.remove("bg-emerald-500");
+          toast.classList.add("bg-rose-500");
+        }
+        
+        // Show toast
+        toast.classList.remove("opacity-0", "translate-y-[-20px]", "pointer-events-none");
+        toast.classList.add("opacity-100", "translate-y-0");
+        
+        // Hide after 3 seconds
+        setTimeout(() => {
+          toast.classList.remove("opacity-100", "translate-y-0");
+          toast.classList.add("opacity-0", "translate-y-[-20px]", "pointer-events-none");
+        }, 3000);
+      }
+
+      function enterApp() {
+        const profile = localStorage.getItem("userProfile");
+        const user = localStorage.getItem("currentUser");
+        
+        if (profile) {
+          enterAppShell();
+        } else if (user) {
+          enterOnboarding();
+        } else {
+          // Show auth/login view
+          document.getElementById("landing-view").classList.add("view-hidden");
+          document.getElementById("auth-view").classList.remove("view-hidden");
+          
+          window.scrollTo(0,0);
+          setTimeout(() => {
+            lucide.createIcons();
+          }, 50);
+        }
+      }
+
+      function logout() {
+        localStorage.removeItem("currentUser");
+        localStorage.removeItem("userProfile");
+        
+        // Reset onboarding state
+        onboardingData = {
+          name: "",
+          dob: "",
+          homeCity: "",
+          currency: "INR",
+          travelStyle: "",
+          tripDuration: "",
+          budgetTier: "",
+          accommodation: [],
+          companions: "",
+          foodPrefs: [],
+          interests: [],
+          languages: [],
+          mobility: "Moderate"
+        };
+        
+        // Reset input fields
+        const nameInput = document.getElementById("onboarding-name");
+        const dobInput = document.getElementById("onboarding-dob");
+        const cityInput = document.getElementById("onboarding-homecity");
+        const mobilityInput = document.getElementById("onboarding-mobility");
+        
+        if (nameInput) nameInput.value = "";
+        if (dobInput) dobInput.value = "";
+        if (cityInput) cityInput.value = "";
+        if (mobilityInput) mobilityInput.value = "2";
+        
+        const mobilityLabel = document.getElementById("mobility-val");
+        if (mobilityLabel) mobilityLabel.innerText = "Moderate";
+        
+        // Reset styled buttons and cards
+        document.querySelectorAll(".travel-style-card, .budget-tier-card").forEach(el => {
+          el.classList.remove("border-teal-500", "bg-teal-500/10");
+          el.classList.add("border-white/10", "bg-white/5");
+        });
+        
+        document.querySelectorAll(".duration-btn, .accom-chip, .comp-btn, .food-chip, .interest-chip, .lang-chip").forEach(el => {
+          el.classList.remove("bg-teal-500", "text-navy", "border-teal-500");
+          el.classList.add("bg-white/5", "text-white", "border-white/10");
+        });
+        
+        // Select INR default again
+        selectCurrency("INR");
+
+        // Switch to landing-view
+        const landing = document.getElementById("landing-view");
+        const auth = document.getElementById("auth-view");
+        const onboarding = document.getElementById("onboarding-view");
+        const appShell = document.getElementById("app-view");
+        
+        appShell.classList.add("view-hidden");
+        auth.classList.add("view-hidden");
+        onboarding.classList.add("view-hidden");
+        landing.classList.remove("view-hidden");
+        
+        window.scrollTo(0,0);
+        setTimeout(() => {
+          lucide.createIcons();
+        }, 50);
+      }
+
+      // Authentication Tab Switcher
+      function switchAuthTab(tab) {
+        const signinBtn = document.getElementById("tab-signin-btn");
+        const signupBtn = document.getElementById("tab-signup-btn");
+        const signinForm = document.getElementById("signin-form");
+        const signupForm = document.getElementById("signup-form");
+        
+        if (tab === 'signin') {
+          signinBtn.className = "flex-1 pb-3 text-center text-sm font-semibold border-b-2 border-teal-500 text-teal-400 focus:outline-none cursor-pointer";
+          signupBtn.className = "flex-1 pb-3 text-center text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white focus:outline-none cursor-pointer";
+          signinForm.classList.remove("hidden");
+          signupForm.classList.add("hidden");
+        } else {
+          signupBtn.className = "flex-1 pb-3 text-center text-sm font-semibold border-b-2 border-teal-500 text-teal-400 focus:outline-none cursor-pointer";
+          signinBtn.className = "flex-1 pb-3 text-center text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white focus:outline-none cursor-pointer";
+          signupForm.classList.remove("hidden");
+          signinForm.classList.add("hidden");
+        }
+        
+        lucide.createIcons();
+      }
+
+      // Sign In Logic
+      function handleSignIn(event) {
+        event.preventDefault();
+        const email = document.getElementById("signin-email").value.trim().toLowerCase();
+        const password = document.getElementById("signin-password").value;
+        
+        const users = JSON.parse(localStorage.getItem("users") || "[]");
+        const user = users.find(u => u.email === email && u.password === password);
+        
+        if (!user) {
+          showToast("Invalid email or password. Please try again.");
+          return;
+        }
+        
+        localStorage.setItem("currentUser", JSON.stringify({ name: user.name, email: user.email }));
+        
+        const savedProfile = localStorage.getItem("userProfile");
+        if (savedProfile) {
+          let profileObj = null;
+          try { profileObj = JSON.parse(savedProfile); } catch(e){}
+          if (profileObj && profileObj.email === email) {
+            showToast("Successfully signed in!", "success");
+            enterAppShell();
+            return;
+          }
+        }
+        
+        showToast("Welcome back! Let's complete your travel profile.", "success");
+        enterOnboarding();
+      }
+
+      // Sign Up Logic
+      function handleSignUp(event) {
+        event.preventDefault();
+        const name = document.getElementById("signup-name").value.trim();
+        const email = document.getElementById("signup-email").value.trim().toLowerCase();
+        const password = document.getElementById("signup-password").value;
+        const confirmPassword = document.getElementById("signup-confirm-password").value;
+        
+        if (password !== confirmPassword) {
+          showToast("Passwords do not match!");
+          return;
+        }
+        
+        const users = JSON.parse(localStorage.getItem("users") || "[]");
+        if (users.some(u => u.email === email)) {
+          showToast("An account with this email already exists.");
+          return;
+        }
+        
+        users.push({ name, email, password });
+        localStorage.setItem("users", JSON.stringify(users));
+        localStorage.setItem("currentUser", JSON.stringify({ name, email }));
+        
+        showToast("Account created successfully!", "success");
+        enterOnboarding();
+      }
+
+      // Continue as Guest Logic
+      function continueAsGuest() {
+        const guestUser = { name: "Guest Traveller", email: "guest@wanderwise.ai", isGuest: true };
+        localStorage.setItem("currentUser", JSON.stringify(guestUser));
+        
+        showToast("Welcome guest! Initializing onboarding...", "success");
+        enterOnboarding();
+      }
+
+      // Onboarding step setup and navigation
+      function enterOnboarding() {
+        const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
+        const nameInput = document.getElementById("onboarding-name");
+        if (currentUser.name && nameInput) {
+          nameInput.value = currentUser.name;
+          onboardingData.name = currentUser.name;
+        }
+        
+        currentOnboardingStep = 1;
+        for (let i = 1; i <= 5; i++) {
+          const stepDiv = document.getElementById(`onboarding-step-${i}`);
+          if (stepDiv) {
+            if (i === 1) stepDiv.classList.remove("hidden");
+            else stepDiv.classList.add("hidden");
+          }
+        }
+        
+        document.getElementById("landing-view").classList.add("view-hidden");
+        document.getElementById("auth-view").classList.add("view-hidden");
+        document.getElementById("app-view").classList.add("view-hidden");
+        document.getElementById("onboarding-view").classList.remove("view-hidden");
+        
+        updateWizardHeader();
+        window.scrollTo(0,0);
+      }
+
+      // Home City Suggestion helper
+      function setHomeCity(city) {
+        const input = document.getElementById("onboarding-homecity");
+        if (input) {
+          input.value = city;
+          onboardingData.homeCity = city;
+        }
+      }
+
+      // Step 1: Currency selection
+      function selectCurrency(curr) {
+        onboardingData.currency = curr;
+        
+        const btns = ["INR", "USD", "EUR", "GBP"];
+        btns.forEach(b => {
+          const btn = document.getElementById(`curr-${b}`);
+          if (btn) {
+            btn.classList.remove("bg-teal-500", "text-navy");
+            btn.classList.add("bg-white/5", "text-slate-400", "hover:text-white");
+          }
+        });
+        
+        const selected = document.getElementById(`curr-${curr}`);
+        if (selected) {
+          selected.classList.remove("bg-white/5", "text-slate-400", "hover:text-white");
+          selected.classList.add("bg-teal-500", "text-navy");
+        }
+
+        updateSpendHints(curr);
+      }
+
+      function updateSpendHints(curr) {
+        const symbols = { "INR": "₹", "USD": "$", "EUR": "€", "GBP": "£" };
+        const sym = symbols[curr] || "$";
+        
+        const rates = {
+          "INR": { "Budget": "2,000", "Mid-range": "7,000", "Luxury": "25,000" },
+          "USD": { "Budget": "25", "Mid-range": "90", "Luxury": "300" },
+          "EUR": { "Budget": "25", "Mid-range": "85", "Luxury": "280" },
+          "GBP": { "Budget": "20", "Mid-range": "75", "Luxury": "250" }
+        };
+        
+        const currRates = rates[curr] || rates["USD"];
+        
+        const hintBudget = document.getElementById("spend-hint-Budget");
+        const hintMid = document.getElementById("spend-hint-Mid-range");
+        const hintLux = document.getElementById("spend-hint-Luxury");
+        
+        if (hintBudget) hintBudget.innerText = `~${sym}${currRates.Budget} / day`;
+        if (hintMid) hintMid.innerText = `~${sym}${currRates.Mid-range} / day`;
+        if (hintLux) hintLux.innerText = `~${sym}${currRates.Luxury} / day`;
+      }
+
+      // Step 2: Travel Style
+      function selectTravelStyle(style) {
+        onboardingData.travelStyle = style;
+        
+        const cards = document.querySelectorAll(".travel-style-card");
+        cards.forEach(card => {
+          card.classList.remove("border-teal-500", "bg-teal-500/10");
+          card.classList.add("border-white/10", "bg-white/5");
+        });
+        
+        const selected = document.getElementById(`style-${style}`);
+        if (selected) {
+          selected.classList.remove("border-white/10", "bg-white/5");
+          selected.classList.add("border-teal-500", "bg-teal-500/10");
+        }
+      }
+
+      function selectDuration(duration) {
+        onboardingData.tripDuration = duration;
+        
+        const btns = document.querySelectorAll(".duration-btn");
+        btns.forEach(btn => {
+          btn.classList.remove("bg-teal-500", "text-navy", "border-teal-500");
+          btn.classList.add("bg-white/5", "text-white", "border-white/10");
+        });
+        
+        const btnId = `dur-${duration.replace(" ", "-")}`;
+        const selected = document.getElementById(btnId);
+        if (selected) {
+          selected.classList.remove("bg-white/5", "text-white", "border-white/10");
+          selected.classList.add("bg-teal-500", "text-navy", "border-teal-500");
+        }
+      }
+
+      // Step 3: Budget & Stay
+      function selectBudgetTier(tier) {
+        onboardingData.budgetTier = tier;
+        
+        const cards = document.querySelectorAll(".budget-tier-card");
+        cards.forEach(card => {
+          card.classList.remove("border-teal-500", "bg-teal-500/10");
+          card.classList.add("border-white/10", "bg-white/5");
+        });
+        
+        const selected = document.getElementById(`tier-${tier}`);
+        if (selected) {
+          selected.classList.remove("border-white/10", "bg-white/5");
+          selected.classList.add("border-teal-500", "bg-teal-500/10");
+        }
+      }
+
+      function toggleAccommodation(accom) {
+        const index = onboardingData.accommodation.indexOf(accom);
+        const chip = document.getElementById(`accom-${accom}`);
+        
+        if (index > -1) {
+          onboardingData.accommodation.splice(index, 1);
+          if (chip) {
+            chip.classList.remove("bg-teal-500", "text-navy", "border-teal-500");
+            chip.classList.add("bg-white/5", "text-white", "border-white/10");
+          }
+        } else {
+          onboardingData.accommodation.push(accom);
+          if (chip) {
+            chip.classList.remove("bg-white/5", "text-white", "border-white/10");
+            chip.classList.add("bg-teal-500", "text-navy", "border-teal-500");
+          }
+        }
+      }
+
+      function selectCompanions(comp) {
+        onboardingData.companions = comp;
+        
+        const btns = document.querySelectorAll(".comp-btn");
+        btns.forEach(btn => {
+          btn.classList.remove("bg-teal-500", "text-navy", "border-teal-500");
+          btn.classList.add("bg-white/5", "text-white", "border-white/10");
+        });
+        
+        const selected = document.getElementById(`comp-${comp}`);
+        if (selected) {
+          selected.classList.remove("bg-white/5", "text-white", "border-white/10");
+          selected.classList.add("bg-teal-500", "text-navy", "border-teal-500");
+        }
+      }
+
+      // Step 4: Preferences
+      function toggleFoodPref(pref) {
+        const index = onboardingData.foodPrefs.indexOf(pref);
+        const chip = document.getElementById(`food-${pref.replace(" ", "-")}`);
+        
+        if (pref === 'No Preference') {
+          onboardingData.foodPrefs = ['No Preference'];
+          const chips = document.querySelectorAll(".food-chip");
+          chips.forEach(c => {
+            c.classList.remove("bg-teal-500", "text-navy", "border-teal-500");
+            c.classList.add("bg-white/5", "text-white", "border-white/10");
+          });
+          if (chip) {
+            chip.classList.remove("bg-white/5", "text-white", "border-white/10");
+            chip.classList.add("bg-teal-500", "text-navy", "border-teal-500");
+          }
+          return;
+        }
+        
+        const noPrefIndex = onboardingData.foodPrefs.indexOf('No Preference');
+        if (noPrefIndex > -1) {
+          onboardingData.foodPrefs.splice(noPrefIndex, 1);
+          const noPrefChip = document.getElementById("food-No-Preference");
+          if (noPrefChip) {
+            noPrefChip.classList.remove("bg-teal-500", "text-navy", "border-teal-500");
+            noPrefChip.classList.add("bg-white/5", "text-white", "border-white/10");
+          }
+        }
+
+        if (index > -1) {
+          onboardingData.foodPrefs.splice(index, 1);
+          if (chip) {
+            chip.classList.remove("bg-teal-500", "text-navy", "border-teal-500");
+            chip.classList.add("bg-white/5", "text-white", "border-white/10");
+          }
+        } else {
+          onboardingData.foodPrefs.push(pref);
+          if (chip) {
+            chip.classList.remove("bg-white/5", "text-white", "border-white/10");
+            chip.classList.add("bg-teal-500", "text-navy", "border-teal-500");
+          }
+        }
+      }
+
+      function toggleInterest(interest) {
+        const index = onboardingData.interests.indexOf(interest);
+        const chip = document.getElementById(`interest-${interest.replace(" ", "-")}`);
+        
+        if (index > -1) {
+          onboardingData.interests.splice(index, 1);
+          if (chip) {
+            chip.classList.remove("bg-teal-500", "text-navy", "border-teal-500");
+            chip.classList.add("bg-white/5", "text-white", "border-white/10");
+          }
+        } else {
+          onboardingData.interests.push(interest);
+          if (chip) {
+            chip.classList.remove("bg-white/5", "text-white", "border-white/10");
+            chip.classList.add("bg-teal-500", "text-navy", "border-teal-500");
+          }
+        }
+      }
+
+      function toggleLanguage(lang) {
+        const index = onboardingData.languages.indexOf(lang);
+        const chip = document.getElementById(`lang-${lang}`);
+        
+        if (index > -1) {
+          onboardingData.languages.splice(index, 1);
+          if (chip) {
+            chip.classList.remove("bg-teal-500", "text-navy", "border-teal-500");
+            chip.classList.add("bg-white/5", "text-white", "border-white/10");
+          }
+        } else {
+          onboardingData.languages.push(lang);
+          if (chip) {
+            chip.classList.remove("bg-white/5", "text-white", "border-white/10");
+            chip.classList.add("bg-teal-500", "text-navy", "border-teal-500");
+          }
+        }
+      }
+
+      function updateMobilityLabel(val) {
+        const labels = { "1": "Low", "2": "Moderate", "3": "High" };
+        const label = labels[val] || "Moderate";
+        const labelEl = document.getElementById("mobility-val");
+        if (labelEl) labelEl.innerText = label;
+        onboardingData.mobility = label;
+      }
+
+      // Onboarding Navigation
+      function onboardingNextStep() {
+        if (currentOnboardingStep === 1) {
+          const name = document.getElementById("onboarding-name").value.trim();
+          const dob = document.getElementById("onboarding-dob").value;
+          const homeCity = document.getElementById("onboarding-homecity").value.trim();
+          
+          if (!name || !dob || !homeCity) {
+            showToast("Please enter your name, date of birth, and home city.");
+            return;
+          }
+          
+          onboardingData.name = name;
+          onboardingData.dob = dob;
+          onboardingData.homeCity = homeCity;
+          
+          document.getElementById("onboarding-step-1").classList.add("hidden");
+          currentOnboardingStep = 2;
+          document.getElementById("onboarding-step-2").classList.remove("hidden");
+          updateWizardHeader();
+          return;
+        }
+        
+        if (currentOnboardingStep === 2) {
+          if (!onboardingData.travelStyle) {
+            showToast("Please pick a Travel Style card.");
+            return;
+          }
+          if (!onboardingData.tripDuration) {
+            showToast("Please select your preferred Trip Duration.");
+            return;
+          }
+          
+          document.getElementById("onboarding-step-2").classList.add("hidden");
+          currentOnboardingStep = 3;
+          document.getElementById("onboarding-step-3").classList.remove("hidden");
+          updateWizardHeader();
+          return;
+        }
+        
+        if (currentOnboardingStep === 3) {
+          if (!onboardingData.budgetTier) {
+            showToast("Please pick a Budget Tier card.");
+            return;
+          }
+          if (onboardingData.accommodation.length === 0) {
+            showToast("Please select at least one Accommodation Preference.");
+            return;
+          }
+          if (!onboardingData.companions) {
+            showToast("Please select your Travel Companions preference.");
+            return;
+          }
+          
+          document.getElementById("onboarding-step-3").classList.add("hidden");
+          currentOnboardingStep = 4;
+          document.getElementById("onboarding-step-4").classList.remove("hidden");
+          updateWizardHeader();
+          return;
+        }
+        
+        if (currentOnboardingStep === 4) {
+          if (onboardingData.foodPrefs.length === 0) {
+            showToast("Please select at least one Food Preference.");
+            return;
+          }
+          if (onboardingData.interests.length === 0) {
+            showToast("Please select at least one Interest chip.");
+            return;
+          }
+          if (onboardingData.languages.length === 0) {
+            showToast("Please select at least one Language chip.");
+            return;
+          }
+          
+          // Calculate Travel Persona
+          const personaStyleMap = {
+            "Adventure": "Adventurer",
+            "Relaxation": "Leisure Seeker",
+            "Cultural": "Cultural Explorer",
+            "Foodie": "Foodie Voyager",
+            "Backpacker": "Nomadic Backpacker",
+            "Luxury": "Luxury Connoisseur"
+          };
+          
+          const styleTitle = personaStyleMap[onboardingData.travelStyle] || "Explorer";
+          const travelPersona = `${onboardingData.budgetTier} ${styleTitle}`;
+          
+          // Calculate Daily Budget
+          const budgetRates = {
+            "INR": { "Budget": 2000, "Mid-range": 7000, "Luxury": 25000 },
+            "USD": { "Budget": 25, "Mid-range": 90, "Luxury": 300 },
+            "EUR": { "Budget": 25, "Mid-range": 85, "Luxury": 280 },
+            "GBP": { "Budget": 20, "Mid-range": 75, "Luxury": 250 }
+          };
+          
+          const dailyBudget = budgetRates[onboardingData.currency][onboardingData.budgetTier] || 100;
+          const budgetSplit = { stay: 40, food: 25, transport: 15, activities: 15, shopping: 5 };
+          
+          onboardingData.travelPersona = travelPersona;
+          onboardingData.dailyBudget = dailyBudget;
+          onboardingData.budgetSplit = budgetSplit;
+          
+          // Fill Summary Step
+          document.getElementById("summary-persona").innerText = travelPersona;
+          
+          const currencySymbols = { "INR": "₹", "USD": "$", "EUR": "€", "GBP": "£" };
+          const sym = currencySymbols[onboardingData.currency] || "$";
+          document.getElementById("summary-dailybudget").innerText = `${sym}${dailyBudget.toLocaleString()} / day`;
+          
+          document.getElementById("summary-name").innerText = onboardingData.name;
+          document.getElementById("summary-homecity").innerText = onboardingData.homeCity;
+          document.getElementById("summary-style").innerText = onboardingData.travelStyle;
+          document.getElementById("summary-duration").innerText = onboardingData.tripDuration;
+          
+          document.getElementById("onboarding-step-4").classList.add("hidden");
+          currentOnboardingStep = 5;
+          document.getElementById("onboarding-step-5").classList.remove("hidden");
+          updateWizardHeader();
+          return;
+        }
+        
+        if (currentOnboardingStep === 5) {
+          // Save everything to userProfile in localStorage
+          const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
+          const finalProfile = {
+            ...onboardingData,
+            email: currentUser.email || "guest@wanderwise.ai"
+          };
+          
+          localStorage.setItem("userProfile", JSON.stringify(finalProfile));
+          showToast("Profile completed! Welcome to WanderWise.", "success");
+          
+          enterAppShell();
+        }
+      }
+
+      function onboardingPrevStep() {
+        if (currentOnboardingStep <= 1) return;
+        
+        document.getElementById(`onboarding-step-${currentOnboardingStep}`).classList.add("hidden");
+        currentOnboardingStep--;
+        document.getElementById(`onboarding-step-${currentOnboardingStep}`).classList.remove("hidden");
+        
+        updateWizardHeader();
+      }
+
+      function updateWizardHeader() {
+        const stepTexts = {
+          1: "Basics & Home",
+          2: "Travel Style",
+          3: "Budget & Stay",
+          4: "Preferences & Restrictions",
+          5: "Review & Confirm"
+        };
+        
+        document.getElementById("onboarding-step-indicator").innerText = `Step ${currentOnboardingStep} of 5`;
+        document.getElementById("onboarding-progress-text").innerText = stepTexts[currentOnboardingStep];
+        
+        const progressPercent = (currentOnboardingStep / 5) * 100;
+        document.getElementById("onboarding-progress-bar").style.width = `${progressPercent}%`;
+        
+        const backBtn = document.getElementById("onboarding-back");
+        if (currentOnboardingStep === 1) {
+          backBtn.classList.add("invisible");
+        } else {
+          backBtn.classList.remove("invisible");
+        }
+        
+        const nextBtn = document.getElementById("onboarding-next");
+        if (currentOnboardingStep === 5) {
+          nextBtn.innerHTML = `Start Exploring <i data-lucide="arrow-right" class="w-4 h-4"></i>`;
+        } else {
+          nextBtn.innerHTML = `Next Step <i data-lucide="arrow-right" class="w-4 h-4"></i>`;
+        }
+        
+        lucide.createIcons();
+      }
+
+      // Enter Main App Shell
+      function enterAppShell() {
+        const landing = document.getElementById("landing-view");
+        const auth = document.getElementById("auth-view");
+        const onboarding = document.getElementById("onboarding-view");
+        const appShell = document.getElementById("app-view");
+        
+        landing.classList.add("view-hidden");
+        auth.classList.add("view-hidden");
+        onboarding.classList.add("view-hidden");
+        appShell.classList.remove("view-hidden");
+        
+        syncUserProfileUI();
+        
+        switchTab('dashboard');
+        window.scrollTo(0,0);
+        
+        setTimeout(() => {
+          lucide.createIcons();
+        }, 50);
+      }
+
+      // Sync userProfile into Dashboard/Profile Tabs DOM
+      function syncUserProfileUI() {
+        const savedProfile = localStorage.getItem("userProfile");
+        if (!savedProfile) return;
+        
+        let profile = null;
+        try {
+          profile = JSON.parse(savedProfile);
+        } catch (e) {
+          return;
+        }
+        
+        // 1. Top bar subtitles
+        const subtextElements = ["topbar-subtitle"];
+        subtextElements.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.innerText = `Welcome back, ${profile.name}! Here is your current travel snapshot.`;
+          }
+        });
+        
+        // 2. Profile tab Name & Email
+        const pName = document.getElementById("profile-fullname");
+        if (pName) pName.innerText = profile.name;
+        
+        const pEmail = document.getElementById("profile-email");
+        if (pEmail) pEmail.innerText = profile.email || "guest@wanderwise.ai";
+        
+        // 3. Initials
+        const pInitials = document.getElementById("profile-avatar-initials");
+        if (pInitials) {
+          const parts = profile.name.trim().split(/\s+/);
+          let initials = "";
+          if (parts.length >= 2) {
+            initials = (parts[0][0] + parts[1][0]).toUpperCase();
+          } else if (parts.length === 1 && parts[0].length > 0) {
+            initials = parts[0].substring(0, 2).toUpperCase();
+          } else {
+            initials = "G";
+          }
+          pInitials.innerText = initials;
+        }
+        
+        // 4. Badges / Persona
+        const pPersonaBadge = document.getElementById("profile-persona-badge");
+        if (pPersonaBadge) {
+          pPersonaBadge.innerText = profile.travelPersona;
+        }
+        
+        const dashPersonaBadge = document.getElementById("dash-persona-badge");
+        if (dashPersonaBadge) {
+          dashPersonaBadge.innerText = `💎 ${profile.travelPersona}`;
+        }
+        
+        const dashPersonaDesc = document.getElementById("dash-persona-desc");
+        if (dashPersonaDesc) {
+          dashPersonaDesc.innerText = `Based on your chosen travel style of ${profile.travelStyle} with a ${profile.budgetTier} budget tier, you prefer ${profile.accommodation.join(", ")} stays and traveling with ${profile.companions}.`;
+        }
+
+        // 5. Dynamic Currency Symbol & Rates
+        const currencySymbols = { "INR": "₹", "USD": "$", "EUR": "€", "GBP": "£" };
+        const sym = currencySymbols[profile.currency] || "$";
+        
+        // Dynamic Budget Snapshot
+        const durationDaysMap = { "Weekend": 3, "1 week": 7, "2 weeks": 14, "1 month+": 30 };
+        const days = durationDaysMap[profile.tripDuration] || 7;
+        const totalBudget = profile.dailyBudget * days;
+        const spentAmount = Math.round(totalBudget * 0.4);
+        
+        const dashSpent = document.getElementById("dash-spent");
+        if (dashSpent) {
+          dashSpent.innerText = `${sym}${spentAmount.toLocaleString()}`;
+        }
+        
+        const dashSpentSub = document.getElementById("dash-spent-sub");
+        if (dashSpentSub) {
+          dashSpentSub.innerText = `Spent of ${sym}${totalBudget.toLocaleString()}`;
+        }
+        
+        const dashTotalBudget = document.getElementById("dash-total-budget");
+        if (dashTotalBudget) {
+          dashTotalBudget.innerText = `${sym}${totalBudget.toLocaleString()}`;
+        }
+        
+        const dashDailyAvg = document.getElementById("dash-daily-avg");
+        if (dashDailyAvg) {
+          dashDailyAvg.innerText = `${sym}${profile.dailyBudget.toLocaleString()}/day`;
+        }
+
+        // 6. Dynamic Budget Ring Breakdown Categories
+        const breakdownContainer = document.getElementById("budget-ring-breakdown-container");
+        if (breakdownContainer) {
+          const stayAmt = Math.round(totalBudget * 0.40);
+          const foodAmt = Math.round(totalBudget * 0.25);
+          const transAmt = Math.round(totalBudget * 0.15);
+          const actsAmt = Math.round(totalBudget * 0.15);
+          const shopAmt = Math.round(totalBudget * 0.05);
+          
+          breakdownContainer.innerHTML = `
+            <!-- Segment 1: Lodging -->
+            <div>
+              <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                <span>Lodging (${profile.accommodation[0] || 'Hotel'}, etc.)</span>
+                <span>40% (${sym}${stayAmt.toLocaleString()})</span>
+              </div>
+              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                <div class="bg-indigo-500 h-full rounded-full" style="width: 40%"></div>
+              </div>
+            </div>
+
+            <!-- Segment 2: Food & Dining -->
+            <div>
+              <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                <span>Food & Dining</span>
+                <span>25% (${sym}${foodAmt.toLocaleString()})</span>
+              </div>
+              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                <div class="bg-teal-500 h-full rounded-full" style="width: 25%"></div>
+              </div>
+            </div>
+
+            <!-- Segment 3: Transport -->
+            <div>
+              <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                <span>Transport</span>
+                <span>15% (${sym}${transAmt.toLocaleString()})</span>
+              </div>
+              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                <div class="bg-coral h-full rounded-full" style="width: 15%"></div>
+              </div>
+            </div>
+
+            <!-- Segment 4: Sights & Activities -->
+            <div>
+              <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                <span>Activities</span>
+                <span>15% (${sym}${actsAmt.toLocaleString()})</span>
+              </div>
+              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                <div class="bg-pink-500 h-full rounded-full" style="width: 15%"></div>
+              </div>
+            </div>
+
+            <!-- Segment 5: Shopping -->
+            <div>
+              <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                <span>Shopping</span>
+                <span>5% (${sym}${shopAmt.toLocaleString()})</span>
+              </div>
+              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                <div class="bg-amber-400 h-full rounded-full" style="width: 5%"></div>
+              </div>
+            </div>
+          `;
+        }
+
+        // 7. Dynamic quick facts converter rate
+        const factRate = document.getElementById("quick-fact-converter-rate");
+        if (factRate) {
+          if (profile.currency === "INR") {
+            factRate.innerHTML = `<strong class="text-slate-800">Currency Conversion:</strong>
+                                  <p class="text-slate-500">1 INR = 1.88 JPY (Latest rate sync 4m ago)</p>`;
+          } else if (profile.currency === "USD") {
+            factRate.innerHTML = `<strong class="text-slate-800">Currency Conversion:</strong>
+                                  <p class="text-slate-500">1 USD = 156.40 JPY (Latest rate sync 4m ago)</p>`;
+          } else if (profile.currency === "EUR") {
+            factRate.innerHTML = `<strong class="text-slate-800">Currency Conversion:</strong>
+                                  <p class="text-slate-500">1 EUR = 168.20 JPY (Latest rate sync 4m ago)</p>`;
+          } else if (profile.currency === "GBP") {
+            factRate.innerHTML = `<strong class="text-slate-800">Currency Conversion:</strong>
+                                  <p class="text-slate-500">1 GBP = 198.50 JPY (Latest rate sync 4m ago)</p>`;
+          }
+        }
+      }
+
+      // 5. Sidebar/Tab Bar Switcher logic
+      function switchTab(tabId) {
+        // All individual tab panels
+        const panes = document.querySelectorAll(".tab-pane");
+        panes.forEach(pane => pane.classList.add("view-hidden"));
+        
+        // Show target active tab
+        const targetPane = document.getElementById(`tab-content-${tabId}`);
+        if (targetPane) targetPane.classList.remove("view-hidden");
+        
+        // Update Side-panel buttons color styling (Desktop)
+        const tabBtns = document.querySelectorAll(".tab-btn");
+        tabBtns.forEach(btn => {
+          btn.classList.add("text-slate-400", "border-transparent");
+          btn.classList.remove("text-teal-400", "bg-white/5", "border-teal-500");
+        });
+        
+        const activeDesktopBtn = document.getElementById(`tab-btn-${tabId}`);
+        if (activeDesktopBtn) {
+          activeDesktopBtn.classList.remove("text-slate-400", "border-transparent");
+          activeDesktopBtn.classList.add("text-teal-400", "bg-white/5", "border-teal-500");
+        }
+
+        // Update Bottom Bar buttons color styling (Mobile screen aspect)
+        const mobileTabBtns = document.querySelectorAll(".mobile-tab-btn");
+        mobileTabBtns.forEach(btn => {
+          btn.classList.add("text-slate-400");
+          btn.classList.remove("text-teal-400");
+        });
+
+        const activeMobileBtn = document.getElementById(`mobile-tab-btn-${tabId}`);
+        if (activeMobileBtn) {
+          activeMobileBtn.classList.remove("text-slate-400");
+          activeMobileBtn.classList.add("text-teal-400");
+        }
+
+        // Configure Top Bar header title text contextually
+        const topbarTitle = document.getElementById("topbar-title");
+        const topbarSubtitle = document.getElementById("topbar-subtitle");
+        
+        if (tabId === 'dashboard') {
+          topbarTitle.innerText = "Dashboard";
+          let displayName = "Traveller";
+          const savedProfile = localStorage.getItem("userProfile");
+          if (savedProfile) {
+            try {
+              const p = JSON.parse(savedProfile);
+              if (p && p.name) displayName = p.name;
+            } catch(e){}
+          }
+          topbarSubtitle.innerText = `Welcome back, ${displayName}! Here is your current travel snapshot.`;
+        } else if (tabId === 'trips') {
+          topbarTitle.innerText = "Trips Library";
+          topbarSubtitle.innerText = "Manage your active itineraries, saved suggestions, and historic stays.";
+        } else if (tabId === 'explore') {
+          topbarTitle.innerText = "Explore Kyoto";
+          topbarSubtitle.innerText = "Search places, view timeline schedules, and check conversion rates.";
+        } else if (tabId === 'concierge') {
+          topbarTitle.innerText = "AI Concierge Globi";
+          topbarSubtitle.innerText = "Ask questions, get local dining tips, and translate languages instantly.";
+        } else if (tabId === 'profile') {
+          topbarTitle.innerText = "User Profile";
+          topbarSubtitle.innerText = "Review your explorer achievements, stats, and account settings.";
+        }
+
+        // Trigger Lucide refreshes
+        setTimeout(() => {
+          lucide.createIcons();
+        }, 30);
+      }
+
+      // 6. Interactive Explore Search
+      function runExploreSearch() {
+        const input = document.getElementById("explore-search-input").value;
+        const container = document.getElementById("explore-results-container");
+        
+        if (!input.trim()) {
+          alert("Please type a location or category first!");
+          return;
+        }
+
+        // Populate mock results matching search terms
+        container.innerHTML = `
+          <div class="flex items-center justify-between p-3.5 bg-slate-50 rounded-2xl hover:bg-slate-100 transition-colors border border-slate-200/50 animate-fade-in">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center font-bold text-sm">🎒</div>
+              <div>
+                <div class="text-sm font-bold text-slate-800">${input} Tourist Spotlight</div>
+                <div class="text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-current"></i> 4.9 (Recent lookup) • Custom Sights • Kyoto, Japan</div>
+              </div>
+            </div>
+            <button onclick="alert('Destination added to itinerary list!')" class="p-2 hover:bg-white rounded-lg text-teal-600 transition-all border border-slate-200"><i data-lucide="plus" class="w-5 h-5"></i></button>
+          </div>
+          <div class="flex items-center justify-between p-3.5 bg-slate-50 rounded-2xl hover:bg-slate-100 transition-colors border border-slate-200/50 animate-fade-in">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center font-bold text-sm">🍵</div>
+              <div>
+                <div class="text-sm font-bold text-slate-800">${input} Local Culinary Spot</div>
+                <div class="text-[11px] text-slate-500 flex items-center gap-1"><i data-lucide="star" class="w-3 h-3 text-amber-400 fill-current"></i> 4.7 (Recommended by Globi) • Hidden Cafe • Kyoto, Japan</div>
+              </div>
+            </div>
+            <button onclick="alert('Culinary spot added to itinerary timeline!')" class="p-2 hover:bg-white rounded-lg text-teal-600 transition-all border border-slate-200"><i data-lucide="plus" class="w-5 h-5"></i></button>
+          </div>
+        `;
+        
+        lucide.createIcons();
+      }
+
+      // 7. Interactive Globi AI Concierge Chatbot
+      function handleGlobiKeyPress(event) {
+        if (event.key === "Enter") {
+          sendGlobiUserMessage();
+        }
+      }
+
+      function sendGlobiUserMessage() {
+        const input = document.getElementById("globi-chat-input");
+        const msgText = input.value.trim();
+        if (!msgText) return;
+
+        addChatMessage(msgText, "user");
+        input.value = "";
+
+        // Simulate cute loading animation reply
+        showGlobiTypingIndicator();
+
+        setTimeout(() => {
+          removeGlobiTypingIndicator();
+          const response = getGlobiBotReply(msgText);
+          addChatMessage(response, "bot");
+        }, 1200);
+      }
+
+      function triggerGlobiPrompt(type) {
+        let text = "";
+        if (type === 'translate') {
+          text = 'Translate "Where is the station?" to Japanese';
+        } else if (type === 'tipping') {
+          text = 'What are the tipping rules in Kyoto?';
+        } else if (type === 'cafes') {
+          text = 'Recommend some quiet cafes to work or study in Kyoto';
+        }
+        
+        addChatMessage(text, "user");
+        showGlobiTypingIndicator();
+
+        setTimeout(() => {
+          removeGlobiTypingIndicator();
+          const response = getGlobiBotReply(text);
+          addChatMessage(response, "bot");
+        }, 1000);
+      }
+
+      function addChatMessage(text, sender) {
+        const chatBox = document.getElementById("globi-chat-box");
+        
+        if (sender === "user") {
+          chatBox.innerHTML += `
+            <div class="flex gap-3 justify-end max-w-[80%] self-end animate-fade-in">
+              <div class="bg-teal-500 text-navy p-3.5 rounded-2xl shadow-sm text-xs leading-relaxed font-semibold">
+                ${text}
+              </div>
+            </div>
+          `;
+        } else {
+          chatBox.innerHTML += `
+            <div class="flex gap-3 max-w-[80%] animate-fade-in">
+              <div class="w-8 h-8 rounded-full bg-teal-500 text-navy font-bold flex items-center justify-center text-xs shadow-inner shrink-0">
+                🌍
+              </div>
+              <div class="bg-white p-3.5 rounded-2xl shadow-sm text-slate-700 text-xs leading-relaxed border border-slate-100">
+                ${text}
+              </div>
+            </div>
+          `;
+        }
+
+        // Auto Scroll to Bottom of chat container
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      function showGlobiTypingIndicator() {
+        const chatBox = document.getElementById("globi-chat-box");
+        chatBox.innerHTML += `
+          <div id="globi-typing" class="flex gap-3 max-w-[80%] animate-fade-in">
+            <div class="w-8 h-8 rounded-full bg-teal-500 text-navy font-bold flex items-center justify-center text-xs shadow-inner shrink-0">
+              🌍
+            </div>
+            <div class="bg-white px-4 py-3 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-slate-400 animate-bounce" style="animation-delay: 0ms"></span>
+              <span class="w-2 h-2 rounded-full bg-slate-400 animate-bounce" style="animation-delay: 150ms"></span>
+              <span class="w-2 h-2 rounded-full bg-slate-400 animate-bounce" style="animation-delay: 300ms"></span>
+            </div>
+          </div>
+        `;
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      function removeGlobiTypingIndicator() {
+        const typing = document.getElementById("globi-typing");
+        if (typing) typing.remove();
+      }
+
+      function getGlobiBotReply(query) {
+        const q = query.toLowerCase();
+        if (q.includes("translate") || q.includes("station")) {
+          return `In Japanese, <strong>"Where is the station?"</strong> is written as <strong>"駅はどこですか？"</strong> (pronounced <em>"Eki wa doko desu ka?"</em>). 🚉 You can also use the shorter <em>"Eki wa?"</em> while pointing for immediate simplicity!`;
+        } else if (q.includes("tiipping") || q.includes("tipping") || q.includes("tip")) {
+          return `Good news! 🍱 <strong>No tipping is customary or expected in Japan</strong>. In fact, if you leave extra cash on a restaurant table, waiters will often run down the street to return it! Quality service is considered standard and is fully built into the menu pricing.`;
+        } else if (q.includes("cafe") || q.includes("study") || q.includes("work")) {
+          return `Here are two amazing quiet study cafes in Kyoto: <br><br>1. <strong>% Arabica Kyoto Higashiyama</strong> — Outstanding coffee with serene architectural design, although can get busy. Go early!<br>2. <strong>Sentido</strong> — Extremely relaxed workspace atmosphere near Karasuma Oike station with amazing pour-overs and outlets! ☕`;
+        } else {
+          return `That's a fantastic query! Based on your <strong>Elite Culture Seeker</strong> persona, I recommend checking local operating times before going. Would you like me to add a custom activity card regarding <em>"${query}"</em> to your Kyoto timeline?`;
+        }
+      }
+
+      function resetGlobiChat() {
+        const chatBox = document.getElementById("globi-chat-box");
+        chatBox.innerHTML = `
+          <div class="flex gap-3 max-w-[80%] animate-fade-in">
+            <div class="w-8 h-8 rounded-full bg-teal-500 text-navy font-bold flex items-center justify-center text-xs shadow-inner shrink-0">
+              🌍
+            </div>
+            <div class="bg-white p-3.5 rounded-2xl shadow-sm text-slate-700 text-xs leading-relaxed border border-slate-100">
+              Konnichiwa! I'm Globi, your 24/7 AI travel concierge! ✈️ I can translate phrases, provide local rules, find hidden restaurants, or detail safety tips. Ask me anything or select a prompt below!
+            </div>
+          </div>
+        `;
+      }
+
+      // 8. Demo Modal triggers
+      function playDemo() {
+        const modal = document.getElementById("demo-modal");
+        modal.classList.remove("opacity-0", "pointer-events-none");
+        setTimeout(() => {
+          lucide.createIcons();
+        }, 50);
+      }
+
+      function closeDemoModal() {
+        const modal = document.getElementById("demo-modal");
+        modal.classList.add("opacity-0", "pointer-events-none");
+      }
+
+      // 9. IntersectionObserver Scroll animations
+      function setupScrollAnimation() {
+        const elements = document.querySelectorAll("#features > div, #how-it-works, #pricing, #testimonials");
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate-fade-in");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        elements.forEach(el => observer.observe(el));
+      }
+    </script>
+  </body>
+</html>
+
+
